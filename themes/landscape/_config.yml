@@ -1,0 +1,47 @@
+# Header
+menu:
+  庞学军的个人博客: /
+  归档: /archives
+  关于: /about
+
+menu_icons:
+  enable: true
+
+# Content
+excerpt_link: Read More
+fancybox: true
+
+avatar: /images/avatar.jpg
+
+social:
+  GitHub: https://github.com/shaoyuanhangyes || github
+  Google: https://plus.google.com/110657431429268241192 || google
+  Weibo: https://weibo.com/u/1349974130 || weibo
+
+# Sidebar
+sidebar: right
+widgets:
+- recent_posts
+- category
+- tag
+- archive
+
+# display widgets at the bottom of index pages (pagination == 2)
+index_widgets:
+# - category
+# - tagcloud
+# - archive
+
+# widget behavior
+archive_type: 'monthly'
+show_count: true
+
+# Miscellaneous
+google_analytics:
+gauges_analytics:
+favicon:
+  small: /images/favicon.png
+twitter:
+google_plus:
+fb_admins:
+fb_app_id:
