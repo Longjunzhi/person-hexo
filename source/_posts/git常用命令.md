@@ -20,7 +20,7 @@ tags:
 * git reset --hard HEAD^ # 取消commit,不保留修改的文件
 * git checkout -b shen-dev(本地分支名) origin/release_dev(远程分支名) #切换远程分支
 * git checkout . #恢复工作树文件
-
+* ssh-keygen -t rsa -C "your_email@example.com" #生成新的ssh key
 
 3. git的知识点
 
