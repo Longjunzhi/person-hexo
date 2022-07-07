@@ -3,6 +3,8 @@ title: laravel route缓存坑
 date: 2022-07-05 10:46:26
 tags:
  - laravel
+categories:
+ - laravel
 ---
 
 本地访问没有问题,到测试服务器,一直访问不了,路由错误.

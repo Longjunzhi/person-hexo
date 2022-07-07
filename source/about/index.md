@@ -8,7 +8,12 @@ title: 关于作者
 故乡:广东湛江
 学校:广州大学华软软件学院
 专业: 网络工程
-微信:![微信二维码](/static/wechat_qr.jpg "微信二维码")
+微信:
+
+<div style="display: inline-block;">
+<img src="https://pangxuejun.cn/static/wechat_qr.jpg" width="30%" style="float: left">
+</div>
+
 ### 个人简介:
 热爱工作,工作认真负责,有较强的责任心,有良好的沟通能力.计算机体系知识整体都有了解,热爱计算机.
 ### 个人技能:

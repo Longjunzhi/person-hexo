@@ -21,6 +21,14 @@ tags:
 * git checkout -b shen-dev(本地分支名) origin/release_dev(远程分支名) #切换远程分支
 * git checkout . #恢复工作树文件
 * ssh-keygen -t rsa -C "your_email@example.com" #生成新的ssh key
+* git stash #git储藏
+* git stash list # 储藏列表
+* git stash pop # 恢复最近并删除
+* git stash drop #移除stash
+* git stash show #跟着stash名字
+* git stash clear #删除所有缓存的stash
+* git stash save #跟着stash名字
+
 
 3. git的知识点
 
