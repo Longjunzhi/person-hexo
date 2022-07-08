@@ -1,8 +1,6 @@
 ---
-title: 个人网址书签
-date: 2022-07-05 00:26:44
-tags:
- - 网址书签
+title: favorites
+date: 2022-07-08 19:17:02
 ---
 
 ### 私人收藏书签
@@ -22,13 +20,13 @@ tags:
 | [react中文文档](https://react.docschina.org/docs/getting-started.html)|[企业微信开发者文档](https://developer.work.weixin.qq.com/document/path/90664)|
 | [antdPro官网](https://pro.ant.design/)|[antdPro组件](https://procomponents.ant.design/components/)|
 | [VUE3文档](https://v3.cn.vuejs.org/guide/installation.html) |[git官方中文文档](https://git-scm.com/book/zh/v2)
-|[markdown官网文档](https://markdown.com.cn/)||
+|[markdown官网文档](https://markdown.com.cn/)|[golang中文文档](https://studygolang.com/pkgdoc)|
 
 |   资源    |  |
 | ----------- | ----------- |
 |[阿里云大学](https://developer.aliyun.com/course/explore?spm=a2c6h.17661847.0.0.16676fb289Qirw&tags=,,,)|[阿里巴巴开源镜像站](https://developer.aliyun.com/mirror/?spm=a2c6h.12883283.1362934.3.5ddd201c9PSndh)|
 |[gitee](https://gitee.com/)|[github](https://github.com/)|
-|[力扣](https://leetcode.cn/leetbook/)||
+|[力扣](https://leetcode.cn/leetbook/)|[go学习资源](https://www.topgoer.com/)|
 
 电子书
 
