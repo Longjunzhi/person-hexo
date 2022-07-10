@@ -21,6 +21,7 @@ date: 2022-07-08 19:17:02
 | [antdPro官网](https://pro.ant.design/)|[antdPro组件](https://procomponents.ant.design/components/)|
 | [VUE3文档](https://v3.cn.vuejs.org/guide/installation.html) |[git官方中文文档](https://git-scm.com/book/zh/v2)
 |[markdown官网文档](https://markdown.com.cn/)|[golang中文文档](https://studygolang.com/pkgdoc)|
+|[Gorm文档](https://gorm.io/zh_CN/docs/)||
 
 |   资源    |  |
 | ----------- | ----------- |

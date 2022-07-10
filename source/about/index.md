@@ -13,7 +13,7 @@ title: 作者
 
 ---
 <div style="display: inline-block">
-<img src="https://pangxuejun.cn/static/wechat_qr.jpg" width="30%" style="float: left" alt="微信二维码">
+<img src="https://pangxuejun.cn/static/wechat_qr.jpg" width="30%" style="float: left">
 </div>
 
 ### 仓库
