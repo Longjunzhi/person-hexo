@@ -17,6 +17,7 @@ https://golang.google.cn/dl/
 Go\bin 添加到Path环境变量
 设置 go GOPROXY
 ```
+go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.cn,direct
 ```
 
