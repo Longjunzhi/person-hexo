@@ -16,6 +16,8 @@ tags:
    6. git pull #拉取
 
 2. 要用记不住的命令
+
+```angular2html
 * git reset --soft HEAD^ # 取消commit,保留修改的文件
 * git reset --hard HEAD^ # 取消commit,不保留修改的文件
 * git checkout -b shen-dev(本地分支名) origin/release_dev(远程分支名) #切换远程分支
@@ -28,7 +30,7 @@ tags:
 * git stash show #跟着stash名字
 * git stash clear #删除所有缓存的stash
 * git stash save #跟着stash名字
-
+```
 
 3. git的知识点
 
