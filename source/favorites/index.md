@@ -29,6 +29,12 @@ date: 2022-07-08 19:17:02
 |[gitee](https://gitee.com/)|[github](https://github.com/)|
 |[力扣](https://leetcode.cn/leetbook/)|[go学习资源](https://www.topgoer.com/)|
 
+
+面试题
+
+|[go面试题](https://zhuanlan.zhihu.com/p/471490292)
+|[php面试题](https://zhuanlan.zhihu.com/p/385093242)
+
 电子书
 
 [kubernetes](https://pangxuejun.cn/static/k8s.pdf) [docker](https://pangxuejun.cn/static/docker.pdf)
