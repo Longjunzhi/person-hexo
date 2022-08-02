@@ -22,7 +22,7 @@ date: 2022-07-08 19:17:02
 | [VUE3文档](https://v3.cn.vuejs.org/guide/installation.html) |[git官方中文文档](https://git-scm.com/book/zh/v2)
 |[markdown官网文档](https://markdown.com.cn/)|[golang中文文档](https://studygolang.com/pkgdoc)|
 |[Gorm文档](https://gorm.io/zh_CN/docs/)|[微信官方文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)|
-
+|[GO设计模式](https://www.topgoer.cn/docs/golang-design-pattern/golang-design-pattern-1cbgha2ltg796)||
 |   资源    |  |
 | ----------- | ----------- |
 |[阿里云大学](https://developer.aliyun.com/course/explore?spm=a2c6h.17661847.0.0.16676fb289Qirw&tags=,,,)|[阿里巴巴开源镜像站](https://developer.aliyun.com/mirror/?spm=a2c6h.12883283.1362934.3.5ddd201c9PSndh)|
@@ -32,8 +32,8 @@ date: 2022-07-08 19:17:02
 
 面试题
 
-|[go面试题](https://zhuanlan.zhihu.com/p/471490292)
-|[php面试题](https://zhuanlan.zhihu.com/p/385093242)
+[go面试题](https://zhuanlan.zhihu.com/p/471490292)
+[php面试题](https://zhuanlan.zhihu.com/p/385093242)
 
 电子书
 
