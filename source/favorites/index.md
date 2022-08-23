@@ -29,6 +29,7 @@ date: 2022-07-08 19:17:02
 |[阿里云大学](https://developer.aliyun.com/course/explore?spm=a2c6h.17661847.0.0.16676fb289Qirw&tags=,,,)|[阿里巴巴开源镜像站](https://developer.aliyun.com/mirror/?spm=a2c6h.12883283.1362934.3.5ddd201c9PSndh)|
 |[gitee](https://gitee.com/)|[github](https://github.com/)|
 |[力扣](https://leetcode.cn/leetbook/)|[go学习资源](https://www.topgoer.com/)|
+|[谷歌](https://www.google.com/)|[脸书](https://www.facebook.com/)|
 
 
 面试题
