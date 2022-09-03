@@ -107,3 +107,8 @@ deploy:
   repo: git@github.com:Longjunzhi/longjunzhi.github.io.git #https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
   branch: main
 
+# 自动生成sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml

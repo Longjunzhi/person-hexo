@@ -13,7 +13,7 @@ date: 2022-07-08 19:17:02
 |[测试商家后台](http://merchant.manage.opsdns.cc:8081)|[正式商家后台](http://merchant-manage.tanjingpaas.com:8081)|
 |[gitlab](https://gitlab.com/)|[原型图](https://axhub.im/ax9/0b91ef6f07ca07a0/#g=1&id=95k0oz&p=%E5%AD%A6%E5%91%98%E5%88%97%E8%A1%A8)|
 |[蓝湖UI图](https://lanhuapp.com/web/#/item?tid=7bc6a146-1f06-459f-907c-46650fd250d0&fid=all)|[阿里云RAM](https://signin.aliyun.com/1172332297421385.onaliyun.com/login.htm?accounttraceid=9134cee91b1349ff814cc7577f48c976dpqv&cspNonce=UY7LJndJHU&spma=a2c44&spmb=11131515#/main)|
-|[微信公众平台](https://mp.weixin.qq.com/)||
+|[微信公众平台](https://mp.weixin.qq.com/)|[百度翻译](https://fanyi.baidu.com/)|
 |   文档    |  |
 | ----------- | ----------- |
 | [learnKuLaravel文档](https://learnku.com/docs/laravel/8.x)| [Laravel学院文档](https://laravelacademy.org/books/laravel-docs-8)|
