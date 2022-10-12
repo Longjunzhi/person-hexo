@@ -106,7 +106,7 @@ deploy:
   type: git
   repo:
     github: git@github.com:Longjunzhi/longjunzhi.github.io.git #https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
-    coding: git@e.coding.net:pangxuejun/pangxuejun/pangxuejun.git #https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
+#    coding: git@e.coding.net:pangxuejun/pangxuejun/pangxuejun.git #https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
   branch: main
 
 # 自动生成sitemap
