@@ -30,6 +30,8 @@ tags:
 * git stash show #跟着stash名字
 * git stash clear #删除所有缓存的stash
 * git stash save #跟着stash名字
+* git update-index --assume-unchanged filenname #git 忽略已经追踪的文件
+* git update-index --no--assume-unchanged filenname #git 取消忽略已经追踪的文件
 ```
 
 3. git的知识点

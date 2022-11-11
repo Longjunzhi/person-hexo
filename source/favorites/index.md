@@ -33,7 +33,7 @@ date: 2022-07-08 19:17:02
 |[gitee](https://gitee.com/)|[github](https://github.com/)|
 |[力扣](https://leetcode.cn/leetbook/)|[go学习资源](https://www.topgoer.com/)|
 |[谷歌](https://www.google.com/)|[脸书](https://www.facebook.com/)|
-|[php包](https://packagist.org//)|[暂留](https://www.facebook.com/)|
+|[php包](https://packagist.org//)|[掘金](https://juejin.cn/)|
 
 
 面试题
