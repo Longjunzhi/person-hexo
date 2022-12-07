@@ -14,8 +14,7 @@ date: 2022-07-08 19:17:02
 |[gitlab](https://gitlab.com/)|[原型图](https://axhub.im/ax9/0b91ef6f07ca07a0/#g=1&id=95k0oz&p=%E5%AD%A6%E5%91%98%E5%88%97%E8%A1%A8)|
 |[蓝湖UI图](https://lanhuapp.com/web/#/item?tid=7bc6a146-1f06-459f-907c-46650fd250d0&fid=all)|[阿里云RAM](https://signin.aliyun.com/1172332297421385.onaliyun.com/login.htm?accounttraceid=9134cee91b1349ff814cc7577f48c976dpqv&cspNonce=UY7LJndJHU&spma=a2c44&spmb=11131515#/main)|
 |[微信公众平台](https://mp.weixin.qq.com/)|[百度翻译](https://fanyi.baidu.com/)|
-|[需求表](https://bzm5yprwaq.feishu.cn/base/bascnkuieHD1QeHGieq5v6Mrzgg?table=tbll7EOKizxq8Qk6&view=vewuBn4pQg)||
-
+|[需求表](https://bzm5yprwaq.feishu.cn/base/bascnkuieHD1QeHGieq5v6Mrzgg?table=tbll7EOKizxq8Qk6&view=vewuBn4pQg)|[技术方案](https://bzm5yprwaq.feishu.cn/wiki/wikcn1CEdxkuhmNRdBIFmaM32gc)|
 
 |   文档    |  |
 | ----------- | ----------- |
