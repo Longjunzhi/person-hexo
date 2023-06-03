@@ -9,6 +9,7 @@ title: 作者
 学校:广州大学华软软件学院(现:广州软件学院)
 专业: 网络工程
 博客:(https://pangxuejun.cn)
+github:(https://github.com/Longjunzhi)
 <span style="">微信:</span>
 
 ---
@@ -40,6 +41,15 @@ title: 作者
 现在职:广州千知网络科技有限公司
 
 2022.4 ~ 至今
+
+项目：
+1.负责crm后台系统的api开发
+2.负责部分crm后台前端antDesign开发
+3.对接第三方接口开发
+4.教学系统的设计、开发
+5.维护测试服务器nginx、mysql
+6.容器的部署
+
 
 广州蜜影信息科技有限公司
 
