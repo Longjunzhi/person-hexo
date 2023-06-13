@@ -2,7 +2,10 @@
 title: git知识点
 date: 2022-07-04 10:09:03
 tags:
+ - git 
+category:
  - git
+
 ---
  
 总结下git版本管理

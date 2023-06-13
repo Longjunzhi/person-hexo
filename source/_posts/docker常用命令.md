@@ -4,6 +4,10 @@ date: 2023-06-12 15:56:15
 tags:
     - docker
     - 容器
+category:
+- docker
+
+
 ---
 
 [docker 文档](https://docs.docker.com/engine/reference/run/)

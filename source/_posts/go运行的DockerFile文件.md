@@ -5,6 +5,8 @@ tags:
  - docker
  - go
  - dockerFile
+category:
+- go
 ---
 
 go的dockerFile文件
