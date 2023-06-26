@@ -17,6 +17,7 @@ date: 2022-07-08 19:17:02
 |[需求表](https://bzm5yprwaq.feishu.cn/base/bascnkuieHD1QeHGieq5v6Mrzgg?table=tbll7EOKizxq8Qk6&view=vewuBn4pQg)|[技术方案](https://bzm5yprwaq.feishu.cn/wiki/wikcn1CEdxkuhmNRdBIFmaM32gc)|
 |[bing](https://www.bing.com/)|[codeup](https://codeup.aliyun.com/61f10dca73741507cb7cf6ec/qzyyds)|
 |[钉钉知识库](https://alidocs.dingtalk.com/i/nodes/7dx2rn0JbAOr0daGs1rk3y67VMGjLRb3)|[json](https://www.json.cn/)|
+|[vultr](https://www.vultr.com/)]||
 
 |   文档    |  |
 | ----------- | ----------- |
