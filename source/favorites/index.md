@@ -19,6 +19,7 @@ date: 2022-07-08 19:17:02
 |[钉钉知识库](https://alidocs.dingtalk.com/i/nodes/7dx2rn0JbAOr0daGs1rk3y67VMGjLRb3)|[json](https://www.json.cn/)|
 |[vultr](https://www.vultr.com/)|[uat-referer](https://uat-api.qzyyds.com/admin/websites/referer)|
 |[jsonToPhp](https://uutool.cn/json2php/)|[bt](https://bt.pangxuejun.cn:27044/baota)|
+|[阿里云控制台](https://home.console.aliyun.com/home/dashboard/ProductAndService)|[阿里云登录](https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fhome.console.aliyun.com%2Fhome%2Fdashboard%2FProductAndService&lang=zh)|
 
 |   文档    |  |
 | ----------- | ----------- |

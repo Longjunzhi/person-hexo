@@ -28,3 +28,13 @@ mysql备份
 
 mysql分表
 
+```
+create table newTable as select * oldTable where 1=0; 仅复制表结构
+
+create table newTable as select * oldTable;复制表结构和数据
+
+create table newTable as select * oldTable where a=*** and b=***;复制表结构和部分数据
+
+
+```
+
