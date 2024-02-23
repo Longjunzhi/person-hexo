@@ -17,10 +17,10 @@ date: 2022-07-08 19:17:02
 |[需求表](https://bzm5yprwaq.feishu.cn/base/bascnkuieHD1QeHGieq5v6Mrzgg?table=tbll7EOKizxq8Qk6&view=vewuBn4pQg)|[技术方案](https://bzm5yprwaq.feishu.cn/wiki/wikcn1CEdxkuhmNRdBIFmaM32gc)|
 |[bing](https://www.bing.com/)|[codeup](https://codeup.aliyun.com/61f10dca73741507cb7cf6ec/qzyyds)|
 |[钉钉知识库](https://alidocs.dingtalk.com/i/nodes/7dx2rn0JbAOr0daGs1rk3y67VMGjLRb3)|[json](https://www.json.cn/)|
-|[vultr](https://www.vultr.com/)|[uat-referer](https://uat-api.qzyyds.com/admin/websites/referer)|
+|[vultr](https://www.vultr.com/)|[aliBt](https://bt.ali.pangxuejun.cn:21690/c53766c0)|
 |[jsonToPhp](https://uutool.cn/json2php/)|[homeBt](https://bt.pangxuejun.cn:27044/baota)|
 |[阿里云控制台](https://home.console.aliyun.com/home/dashboard/ProductAndService)|[阿里云登录](https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fhome.console.aliyun.com%2Fhome%2Fdashboard%2FProductAndService&lang=zh)|
-|[aliBt](https://bt.ali.pangxuejun.cn:21690/c53766c0)|暂无|
+
 
 |   文档    |  |
 | ----------- | ----------- |
