@@ -8,6 +8,8 @@ date: 2022-07-08 19:17:02
 |   工作    |  |
 | ----------- | ----------- |
 |[uat-crm](https://uat-crm.qzyyds.com/)|[crm](https://crm.qzyyds.com/)|
+|[uat-ad-crm](https://uat-ad-crm.qzyyds.com/)|[ad-crm](https://ad-crm.qzyyds.com/)|
+|[uat-sale-crm](https://uat-sale-crm.qzyyds.com/)|[sale-crm](https://sale-crm.qzyyds.com/)|
 |[TAPD看板](https://www.tapd.cn/my_dashboard)|[TAPD工作项目文档](https://www.tapd.cn/48570041/markdown_wikis/show/#1148570041001000033)|
 |[tapd需求](https://www.tapd.cn/48570041/prong/stories/stories_list)|[探鲸文档](http://docs.op.opsdns.cc:8081/note/)|
 |[测试商家后台](http://merchant.manage.opsdns.cc:8081)|[正式商家后台](http://merchant-manage.tanjingpaas.com:8081)|
@@ -20,6 +22,7 @@ date: 2022-07-08 19:17:02
 |[vultr](https://www.vultr.com/)|[aliBt](https://bt.ali.pangxuejun.cn:21690/c53766c0)|
 |[jsonToPhp](https://uutool.cn/json2php/)|[homeBt](https://bt.pangxuejun.cn:27044/baota)|
 |[阿里云控制台](https://home.console.aliyun.com/home/dashboard/ProductAndService)|[阿里云登录](https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fhome.console.aliyun.com%2Fhome%2Fdashboard%2FProductAndService&lang=zh)|
+|[aliRabbitMQWeb](http://rabbit-mq.ali.pangxuejun.cn:15672)|[暂无]|
 
 
 |   文档    |  |
