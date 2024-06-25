@@ -22,7 +22,7 @@ date: 2022-07-08 19:17:02
 |[vultr](https://www.vultr.com/)|[aliBt](https://bt.ali.pangxuejun.cn:21690/c53766c0)|
 |[jsonToPhp](https://uutool.cn/json2php/)|[homeBt](https://bt.pangxuejun.cn:27044/baota)|
 |[阿里云控制台](https://home.console.aliyun.com/home/dashboard/ProductAndService)|[阿里云登录](https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fhome.console.aliyun.com%2Fhome%2Fdashboard%2FProductAndService&lang=zh)|
-|[aliRabbitMQWeb](http://rabbit-mq.ali.pangxuejun.cn:15672)|[暂无]|
+|[aliRabbitMQWeb](http://rabbit-mq.ali.pangxuejun.cn:15672)|[v宝塔](https://v.pangxuejun.cn:15305/baota)|
 
 
 |   文档    |  |
