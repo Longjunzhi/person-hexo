@@ -14,6 +14,11 @@ date: 2022-07-08 19:17:02
 |[阿里云大学](https://developer.aliyun.com/course/explore?spm=a2c6h.17661847.0.0.16676fb289Qirw&tags=,,,)|[阿里巴巴开源镜像站](https://developer.aliyun.com/mirror/?spm=a2c6h.12883283.1362934.3.5ddd201c9PSndh)|
 |[谷歌](https://www.google.com/)|[github](https://github.com/)|
 |[微信公众平台](https://mp.weixin.qq.com/)|[百度翻译](https://fanyi.baidu.com/)|
+|[本地ad前端](http://10.0.0.84:10000/)|[yojuGit](http://git.yoju360.net/mgmt/ad-tools.git)|
+|[需求](https://bytedance.larkoffice.com/docx/HXK5dEulkohvePxN5MCcLwuZnDf)|[优居广告运营工具](http://lsyun.womaijia2015.com/login?redirect=%2Fsetting%2FpersonalCenter)|
+|[AI测试](https://zhuangxiu.youju360.com/conversation/home)|[巨量开发后台](https://open.oceanengine.com/developer/admin/message)|
+|[巨量引擎开放平台文档](https://open.oceanengine.com/labels/7/docs/1696710501763087)|[ad-tools宝塔](http://101.126.10.189:22869/4fe9c83c)|
+
 
 |   文档资源    |  |
 | ----------- | ----------- |
