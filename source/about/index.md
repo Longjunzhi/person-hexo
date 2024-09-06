@@ -8,7 +8,7 @@ title: 作者
 故乡:广东湛江
 学校:广州大学华软软件学院(现:广州软件学院)
 专业: 网络工程
-博客:(https://pangxuejun.cn)
+博客:(https://pangxuejun.cn/about/)
 github:(https://github.com/Longjunzhi)
 <span style="">微信:</span>
 
