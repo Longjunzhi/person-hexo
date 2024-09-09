@@ -3,23 +3,27 @@ title: 作者
 ---
 姓名:庞学军
 性别:男
-手机(微信同号):13124929171
 邮箱: pangxuejun@pangxuejun.cn 570580380@qq.com 
 故乡:广东湛江
 学校:广州大学华软软件学院(现:广州软件学院)
 专业: 网络工程
 博客:(https://pangxuejun.cn/about/)
-github:(https://github.com/Longjunzhi)
+
+[知乎](https://www.zhihu.com/people/long-jun-zhi-48)
+
+[力扣](https://leetcode.cn/u/long-jun-92/)
+
+[github](https://github.com/Longjunzhi)
+
+[csdn](https://blog.csdn.net/u010387817?spm=1010.2135.3001.5421)
+
+
 <span style="">微信:</span>
 
 ---
 <div style="display: inline-block">
 <img src="https://pangxuejun.cn/static/wechat_qr.jpg" width="30%" style="float: left">
 </div>
-
-### 仓库
----
-后台管理: (https://pangxuejun.cn)
 
 ### 个人简介:
 热爱工作,工作认真负责,有较强的责任心,有良好的沟通能力.计算机体系知识整体都有了解,热爱计算机.
