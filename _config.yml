@@ -7,13 +7,14 @@ title: 军的小屋
 subtitle: '庞学军 个人简介,技术栈,项目'
 description: '庞学军 龙军 学军 的个人简介,技术栈,计算机相关的技术文章,后端,前端,算法,go,php,开源项目'
 keywords: 庞学军 龙军 GO PHP 后端 全栈开发 学军 龙军之
-author: 庞学军 学军 龙军
+author: 庞学军
+authors: 庞学军 学军 龙军
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://pangxuejun.cn/longjunzhi.github.io
+url: http://blog.pangxuejun.cn/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
