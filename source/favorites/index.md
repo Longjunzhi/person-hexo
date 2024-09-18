@@ -21,6 +21,10 @@ date: 2022-07-08 19:17:02
 |   平台开发文档    |  |
 | ----------- | ----------- |
 |[微信官方文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)|[企业微信开发者文档](https://developer.work.weixin.qq.com/document/path/90664)|
+|[旧版腾讯广告](https://developers.e.qq.com/docs/start/request)|[腾讯广告V3.0](https://developers.e.qq.com/v3.0/pages/regist_developer)|
+|[建站平台外部咨询工具对接文档](https://docs.qingque.cn/d/home/eZQBey2RXKou2ggSpMTBymBSt)|[快手-私信三方客服接口文档](https://docs.qingque.cn/d/home/eZQBe7zcRWIy6pu5IFPUtWQBL?identityId=1oEF9IquFEJ&via=notHome#section=h.kxq46238lm4i)|
+|[快手开放平台](https://open.kuaishou.com/platform/openApi?menu=60)|[潜客列表查询接口](https://docs.qingque.cn/d/home/eZQCEFoAUe5wjmy6NZ3rr4w4P?identityId=24ZhYHk3ABw)|
+
 
 |   登录资源    |  |
 | ----------- | ----------- |
