@@ -30,7 +30,7 @@ date: 2022-07-08 19:17:02
 | ----------- | ----------- |
 |[vultr](https://www.vultr.com/)|[aliRabbitMQWeb](http://rabbit-mq.ali.pangxuejun.cn:15672)|
 |[v宝塔](https://v.pangxuejun.cn:15305/baota)|[aliBt](https://bt.ali.pangxuejun.cn:21690/c53766c0)|
-|[github](https://github.com/)|[homeBt](https://bt.pangxuejun.cn:27044/baota)|
+|[github](https://github.com/)|[homeBt](https://bt.mini.pangxuejun.cn:27044/baota)|
 |[阿里云控制台](https://home.console.aliyun.com/home/dashboard/ProductAndService)|[微信公众平台](https://mp.weixin.qq.com/)|
 |[掘金](https://juejin.cn/)|[脸书](https://www.facebook.com/)|
 |[gitee](https://gitee.com/)|[github](https://github.com/)|
