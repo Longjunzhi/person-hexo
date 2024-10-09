@@ -30,12 +30,12 @@ date: 2022-07-08 19:17:02
 | ----------- | ----------- |
 |[vultr](https://www.vultr.com/)|[aliRabbitMQWeb](http://rabbit-mq.ali.pangxuejun.cn:15672)|
 |[v宝塔](https://v.pangxuejun.cn:15305/baota)|[aliBt](https://bt.ali.pangxuejun.cn:21690/c53766c0)|
-|[github](https://github.com/)|[homeBt](https://bt.mini.pangxuejun.cn:27044/baota)|
+|[github](https://github.com/)|[fBt](http://bt.f.pangxuejun.cn:18080/baota)|
 |[阿里云控制台](https://home.console.aliyun.com/home/dashboard/ProductAndService)|[微信公众平台](https://mp.weixin.qq.com/)|
 |[掘金](https://juejin.cn/)|[脸书](https://www.facebook.com/)|
 |[gitee](https://gitee.com/)|[github](https://github.com/)|
 |[力扣](https://leetcode.cn/leetbook/)|[知乎](https://www.zhihu.com/)|
-|[csdn](https://www.csdn.net/)|[无]()|
+|[csdn](https://www.csdn.net/)|[fsBt](https://bts.f.pangxuejun.cn:18443/baota)|
 
 |   技术文档    |  |
 | ----------- | ----------- |
@@ -45,6 +45,8 @@ date: 2022-07-08 19:17:02
 |[antdPro官网](https://pro.ant.design/)|[antdPro组件](https://procomponents.ant.design/components/)|
 |[markdown官网文档](https://markdown.com.cn/)|[golang中文文档](https://studygolang.com/pkgdoc)|
 |[GO设计模式](https://www.topgoer.cn/docs/golang-design-pattern/golang-design-pattern-1cbgha2ltg796)|[goDev](https://go.dev/)|
+|[swoole](https://wiki.swoole.com/zh-cn/#/)|[hyperf](https://hyperf.wiki/3.1/#/)|
+|[workerman](https://www.workerman.net/)||
 
 |   面经    |  |
 | ----------- | ----------- |
