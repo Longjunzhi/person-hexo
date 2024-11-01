@@ -7,16 +7,13 @@ date: 2022-07-08 19:17:02
 
 |   yoju    |  |
 | ----------- | ----------- |
-|[yoju本地ad前端](http://10.0.0.84:10000/)|[yojuGit](http://git.yoju360.net/mgmt/ad-tools.git)|
-|[需求](https://bytedance.larkoffice.com/docx/HXK5dEulkohvePxN5MCcLwuZnDf)|[优居广告运营工具](http://lsyun.womaijia2015.com/login?redirect=%2Fsetting%2FpersonalCenter)|
-|[巨量引擎开放平台文档](https://open.oceanengine.com/labels/7/docs/1696710501763087)|[ad-tools宝塔](http://101.126.10.189:22869/4fe9c83c)|
-|[AI测试](https://zhuangxiu.youju360.com/conversation/home)|[巨量开发后台](https://open.oceanengine.com/developer/admin/message)|
 
 |   工具    |  |
 | ----------- | ----------- |
-|[tongyi](https://tongyi.aliyun.com/qianwen/?spm=5176.28326591.0.0.40f76ee1zBYunq&sessionId=28a93df8d46c470ba6520385fdd024fe)|[百度翻译](https://fanyi.baidu.com/)|
+|[tongyi](https://tongyi.aliyun.com/qianwen/?spm=5176.28326591.0.0.40f76ee1zBYunq)|[百度翻译](https://fanyi.baidu.com/)|
 |[bing](https://www.bing.com/)|[谷歌](https://www.google.com/)|
-|[jsonToPhp](https://uutool.cn/json2php/)|[json](https://www.json.cn/)|
+|[jsonToPhp](https://uutool.cn/json2php/)|[json](https://www.json.cn/?fullscreen)|
+|[豆包](https://www.doubao.com/chat/)||
 
 |   平台开发文档    |  |
 | ----------- | ----------- |
@@ -30,7 +27,7 @@ date: 2022-07-08 19:17:02
 | ----------- | ----------- |
 |[vultr](https://www.vultr.com/)|[aliRabbitMQWeb](http://rabbit-mq.ali.pangxuejun.cn:15672)|
 |[v宝塔](https://v.pangxuejun.cn:15305/baota)|[aliBt](https://bt.ali.pangxuejun.cn:21690/c53766c0)|
-|[github](https://github.com/)|[fBt](http://bt.f.pangxuejun.cn:18080/baota)|
+|[github](https://github.com/)|[生活号](https://s.alipay.com)|
 |[阿里云控制台](https://home.console.aliyun.com/home/dashboard/ProductAndService)|[微信公众平台](https://mp.weixin.qq.com/)|
 |[掘金](https://juejin.cn/)|[脸书](https://www.facebook.com/)|
 |[gitee](https://gitee.com/)|[github](https://github.com/)|
@@ -46,7 +43,7 @@ date: 2022-07-08 19:17:02
 |[markdown官网文档](https://markdown.com.cn/)|[golang中文文档](https://studygolang.com/pkgdoc)|
 |[GO设计模式](https://www.topgoer.cn/docs/golang-design-pattern/golang-design-pattern-1cbgha2ltg796)|[goDev](https://go.dev/)|
 |[swoole](https://wiki.swoole.com/zh-cn/#/)|[hyperf](https://hyperf.wiki/3.1/#/)|
-|[workerman](https://www.workerman.net/)||
+|[workerman](https://www.workerman.net/)|[dify](https://docs.dify.ai/zh-hans)|
 
 |   面经    |  |
 | ----------- | ----------- |
