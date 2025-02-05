@@ -10,7 +10,7 @@ date: 2022-07-08 19:17:02
 |[tongyi](https://tongyi.aliyun.com/qianwen/?spm=5176.28326591.0.0.40f76ee1zBYunq)|[百度翻译](https://fanyi.baidu.com/)|
 |[bing](https://www.bing.com/)|[谷歌](https://www.google.com/)|
 |[jsonToPhp](https://uutool.cn/json2php/)|[json](https://www.json.cn/?fullscreen)|
-|[豆包](https://www.doubao.com/chat/)||
+|[豆包](https://www.doubao.com/chat/)|[deepseek](https://chat.deepseek.com/)|
 
 |   平台开发文档    |  |
 | ----------- | ----------- |
