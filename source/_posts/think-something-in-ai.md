@@ -6,26 +6,25 @@ tags:
  - ai
 ---
 
-I am try to english this article.
+Perhaps AI will continue to improve significantly in the future.
 
-Maybe ai more and more better in the future.
+Specifically, advanced AI like DeepSeek is transforming the world.
 
-Special deepseek ai change the world.
+We can achieve remarkable things through AI.
 
-we can do something in ai.
+I'm uncertain about what the future holds.
 
-I don't know what is the future.
+But I'm determined to adapt by leveraging AI tools.
 
-I am try to change myself. I start to use ai to help me do something. 
+For example:
 
-Example:
-    code work.
-    article write.
-    knowledge share.
-    etc.
+* Coding tasks
+* Article writing
+* Knowledge sharing
+* And more
 
-In 2025, I think ai will be more and more better.
+By 2025, I believe AI capabilities will advance exponentially.
 
-I will continue to learn code, go language, swoole, hyperf, etc.
+I plan to keep learning programming languages like Go, frameworks like Swoole and Hyperf,
 
-high performance.
+focusing on high-performance computing.
