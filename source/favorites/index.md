@@ -11,7 +11,9 @@ date: 2022-07-08 19:17:02
 |[bing](https://www.bing.com/)|[谷歌](https://www.google.com/)|
 |[jsonToPhp](https://uutool.cn/json2php/)|[json](https://www.json.cn/?fullscreen)|
 |[豆包](https://www.doubao.com/chat/)|[deepseek](https://chat.deepseek.com/)|
-|[时间戳](https://tool.lu/timestamp/)|[原型图]()|
+|[时间戳](https://tool.lu/timestamp/)|[即梦ai](https://jimeng.jianying.com/ai-tool/home)|
+|[可灵ai](https://app.klingai.com/cn/)|[海螺ai](https://hailuoai.com/?monitorId=66800&qhclickid=ffe4f95268903215)|
+
 
 |   平台开发文档    |  |
 | ----------- | ----------- |
