@@ -19,16 +19,14 @@ date: 2022-07-08 19:17:02
 | ----------- | ----------- |
 |[微信官方文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)|[企业微信开发者文档](https://developer.work.weixin.qq.com/document/path/90664)|
 
-|   登录资源    |  |
+|   常用平台    |  |
 | ----------- | ----------- |
-|[vultr](https://www.vultr.com/)|[aliRabbitMQWeb](http://rabbit-mq.ali.pangxuejun.cn:15672)|
-|[wxaliBt](https://bt.wx.pangxuejun.cn:11954/05b4fa65)|[aliBt](https://bt.ali.pangxuejun.cn:21690/c53766c0)|
+|[vultr](https://www.vultr.com/)|[阿里云控制台](https://home.console.aliyun.com/home/dashboard/ProductAndService)|
 |[github](https://github.com/)|[生活号](https://s.alipay.com)|
-|[阿里云控制台](https://home.console.aliyun.com/home/dashboard/ProductAndService)|[微信公众平台](https://mp.weixin.qq.com/)|
-|[掘金](https://juejin.cn/)|[脸书](https://www.facebook.com/)|
+|[微信公众平台](https://mp.weixin.qq.com/)|[掘金](https://juejin.cn/)|
 |[gitee](https://gitee.com/)|[github](https://github.com/)|
 |[力扣](https://leetcode.cn/leetbook/)|[知乎](https://www.zhihu.com/)|
-|[csdn](https://www.csdn.net/)|[fsBt](https://bts.f.pangxuejun.cn:18443/baota)|
+|[csdn](https://www.csdn.net/)|[脸书](https://www.facebook.com/)|
 |[tushare](https://tushare.pro/)|[uChart](https://www.ucharts.cn/v2/#/demo/index)|
 
 |   技术文档    |  |

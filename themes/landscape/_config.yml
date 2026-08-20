@@ -11,13 +11,10 @@ menu_icons:
 
 # Content
 excerpt_link: Read More
-fancybox: true
-
-avatar: /images/avatar.jpg
+fancybox: false
 
 social:
-  GitHub: https://github.com/shaoyuanhangyes || github
-  Google: https://plus.google.com/110657431429268241192 || google
+  GitHub: https://github.com/Longjunzhi || github
   Weibo: https://weibo.com/u/1349974130 || weibo
 
 # Sidebar
@@ -42,7 +39,6 @@ show_count: true
 google_analytics:
 gauges_analytics:
 favicon:
-  small: /images/favicon.png
 twitter:
 google_plus:
 fb_admins:
