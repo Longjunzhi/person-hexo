@@ -107,9 +107,9 @@ theme: landscape
 deploy:
   type: git
   repo:
-    github: git@github.com:Longjunzhi/longjunzhi.github.io.git #https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
-#    coding: git@e.coding.net:pangxuejun/pangxuejun/pangxuejun.git #https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
-  branch: main
+    github:
+      url: git@github.com:Longjunzhi/longjunzhi.github.io.git
+      branch: master
 
 # 自动生成 sitemap
 sitemap:
