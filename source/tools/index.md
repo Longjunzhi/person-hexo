@@ -82,7 +82,7 @@ hide_author: true
       </dl>
       <div id="time-status" class="tool-status" role="status" aria-live="polite"></div>
     </section>
-    <section id="color-blocks" class="tool-panel" role="tabpanel" data-tool-panel aria-labelledby="tool-tab-color" hidden>
+    <section id="color-blocks" class="tool-panel tool-panel-color" role="tabpanel" data-tool-panel aria-labelledby="tool-tab-color" hidden>
       <header class="tool-panel-header">
         <div><span class="tool-eyebrow">COLOR PALETTE</span><h2>色块工具</h2><p>选择一个基础色，自动生成可直接用于界面设计的十级色阶。</p></div>
         <span class="tool-local-badge">点击即复制</span>
