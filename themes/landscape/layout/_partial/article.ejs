@@ -20,9 +20,11 @@
         <% } %>
       <% } else { %>
         <%- post.content %>
-          <p style="color: gray; font-size: 0.75em;">
-              作者：<%- theme.author %>
-          </p>
+          <% if (!post.hide_author) { %>
+            <p style="color: gray; font-size: 0.75em;">
+                作者：<%- theme.author %>
+            </p>
+          <% } %>
       <% } %>
     </div>
     <footer class="article-footer">

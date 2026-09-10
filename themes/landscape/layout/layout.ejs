@@ -1,11 +1,12 @@
 <%- partial('_partial/head') %>
-<body>
+<body<% if (page.path === 'tools/index.html') { %> class="tools-body"<% } %>>
+  <% var showSidebar = theme.sidebar && theme.sidebar !== 'bottom' && page.sidebar !== false; %>
   <div id="container">
     <div id="wrap">
       <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
-      <div class="outer">
-        <section id="main"><%- body %></section>
-        <% if (theme.sidebar && theme.sidebar !== 'bottom'){ %>
+      <div class="outer<% if (!showSidebar) { %> no-sidebar<% } %>">
+        <section id="main"<% if (!showSidebar) { %> class="main-full-width"<% } %>><%- body %></section>
+        <% if (showSidebar){ %>
           <%- partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
         <% } %>
       </div>
