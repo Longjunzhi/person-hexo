@@ -113,6 +113,11 @@
   color: #0284c7
   font: 700 13px font-mono
 
+.tools-nav-color-icon
+  background: linear-gradient(135deg, #fda4af 0 33%, #fbbf24 33% 66%, #38bdf8 66%)
+  color: #fff
+  text-shadow: 0 1px 3px rgba(15, 23, 42, 0.28)
+
 .tools-nav-note
   margin-top: 18px
   padding: 16px 18px
@@ -381,6 +386,105 @@
     color: #334155
     font: 13px font-mono
 
+.color-controls
+  display: grid
+  grid-template-columns: 132px minmax(180px, 1fr) auto auto
+  align-items: end
+  gap: 12px
+  margin-bottom: 22px
+
+.color-picker-shell
+  display: grid
+  grid-template-columns: 46px 1fr
+  align-items: center
+  gap: 9px
+  box-sizing: border-box
+  min-height: 46px
+  padding: 5px 10px 5px 6px
+  border: 1px solid #dbe3ed
+  border-radius: 9px
+  background: #fbfdff
+  color: #334155
+  font-size: 12px
+  font-weight: 700
+  cursor: pointer
+
+  input
+    width: 38px
+    height: 34px
+    padding: 0
+    overflow: hidden
+    border: 0
+    border-radius: 7px
+    background: transparent
+    cursor: pointer
+
+.color-hex-field
+  gap: 7px
+
+.color-palette
+  display: grid
+  grid-template-columns: repeat(10, minmax(68px, 1fr))
+  min-height: 270px
+  overflow: hidden
+  border-radius: 12px
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12)
+
+.color-swatch
+  display: flex
+  min-width: 0
+  padding: 16px 8px
+  border: 0
+  flex-direction: column
+  align-items: center
+  justify-content: flex-end
+  gap: 5px
+  cursor: pointer
+  transition: transform 0.16s ease, filter 0.16s ease
+
+  &:hover
+    z-index: 1
+    filter: saturate(1.08)
+    transform: scale(1.035)
+
+  &:focus-visible
+    z-index: 2
+    outline: 3px solid #fff
+    outline-offset: -5px
+
+  strong
+    font-size: 14px
+
+  span
+    font: 11px font-mono
+
+.color-summary
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: 12px
+  margin-top: 18px
+
+  div
+    padding: 13px 15px
+    border: 1px solid #edf1f5
+    border-radius: 9px
+    background: #f8fafc
+
+  span,
+  strong
+    display: block
+
+  span
+    margin-bottom: 6px
+    color: #94a3b8
+    font-size: 11px
+    font-weight: 700
+
+  strong
+    overflow-wrap: anywhere
+    color: #334155
+    font: 13px font-mono
+
 @media mq-tablet
   .tools-body .outer.no-sidebar
     padding-left: 14px
@@ -392,6 +496,15 @@
 
   .tool-panel
     padding: 22px
+
+  .color-controls
+    grid-template-columns: 132px minmax(160px, 1fr)
+
+  .color-palette
+    grid-template-columns: repeat(5, 1fr)
+
+  .color-swatch
+    min-height: 100px
 
 @media mq-mobile
   .tools-body .outer.no-sidebar
@@ -409,7 +522,7 @@
     padding: 15px 15px 10px
 
   .tools-nav-list
-    grid-template-columns: repeat(2, minmax(0, 1fr))
+    grid-template-columns: repeat(3, minmax(0, 1fr))
 
   .tools-nav-item
     grid-template-columns: 32px minmax(0, 1fr)
@@ -454,3 +567,14 @@
 
   .tool-panel-footer .tool-status
     text-align: left
+
+  .color-controls,
+  .color-summary
+    grid-template-columns: 1fr
+
+  .color-palette
+    grid-template-columns: repeat(2, 1fr)
+    min-height: 0
+
+  .color-swatch
+    min-height: 94px
