@@ -118,6 +118,33 @@ The public domain currently resolves to a separately managed Nginx server at
 `8.148.236.241`, so a GitHub Pages push alone may not update the live domain. Server
 deployment requires an explicit user request and successful public-key SSH access.
 
+### End-to-end article release runbook
+
+When the user asks to write, publish, and deploy an article, use this order:
+
+1. Create the Markdown post in `source/_posts/` with valid front matter, a unique
+   title, the intended Asia/Shanghai publication time, tags, and a category.
+2. Review the post for accidental secrets, private URLs, unsafe HTML, executable
+   downloads, and content likely to trigger platform security controls.
+3. Run `npm run clean`, `npm run build`, `npm audit`, the blocked-content checks in
+   this file, and `git diff --check`.
+4. Confirm the expected article HTML exists under `public/<year>/<month>/<day>/` and
+   contains the correct title and canonical HTTPS URL.
+5. Commit the source changes and push `main` to
+   `git@github.com:Longjunzhi/person-hexo.git`.
+6. Run `npm run deploy` and confirm the generated commit reaches `master` in
+   `git@github.com:Longjunzhi/longjunzhi.github.io.git`.
+7. Deploy the same local `public/` build to the production Nginx document root using
+   the production procedure below. Do not rebuild between the Pages and production
+   deployments.
+8. Verify the article and core assets over HTTPS on the live domain. Also verify
+   sitemap inclusion, security headers, the apex-domain certificate, and the known
+   blocked URLs.
+
+If a step fails, stop the release at that point, preserve the last working production
+version, and report the exact failure. Do not claim the article is published merely
+because the source repository was pushed.
+
 ## Production server safety
 
 - Connect using SSH keys; never request, display, log, or store a password or private
@@ -134,6 +161,48 @@ deployment requires an explicit user request and successful public-key SSH acces
 - After deployment, verify both domains, `sitemap.xml`, CSS and JavaScript assets,
   security headers, and expected 404 responses for unpublished pages and excluded
   downloads.
+
+### Current production deployment procedure
+
+The current production host and document root are:
+
+```text
+SSH: root@8.148.236.241
+Nginx: /www/server/nginx/sbin/nginx
+Vhost: /www/server/panel/vhost/nginx/www.pangxuejun.cn.conf
+Document root: /www/wwwroot/longjunzhi.github.io
+```
+
+The document root is not a Git worktree. Deploy generated files from the local
+`public/` directory. Before changing it:
+
+1. Confirm the SSH identity and hostname.
+2. Re-read the active vhost and confirm its `root` is still the path above.
+3. Check free disk space and create a timestamped compressed backup under
+   `/www/backup/codex/person-hexo/`.
+4. Preserve server-managed files that are not produced by Hexo, currently including
+   `.user.ini`, `ba0015b642d4bd3c078a6079b9354bf7.txt`, and `新建文本`.
+5. Synchronize `public/` to the document root with deletion enabled so unpublished
+   pages and excluded downloads cannot remain stale, while explicitly excluding the
+   preserved server-managed files.
+6. Keep the document root owned by `root:root` unless the active server configuration
+   requires otherwise, with directories readable/traversable and files readable by
+   Nginx.
+7. Run `/www/server/nginx/sbin/nginx -t` and reload only after validation succeeds.
+
+Use a dry run before the real synchronization. A representative local command is:
+
+```bash
+rsync -azn --delete \
+  --exclude='.user.ini' \
+  --exclude='ba0015b642d4bd3c078a6079b9354bf7.txt' \
+  --exclude='新建文本' \
+  public/ root@8.148.236.241:/www/wwwroot/longjunzhi.github.io/
+```
+
+Remove `-n` only after reviewing the deletion list and confirming the backup exists.
+If `rsync` is unavailable, do not improvise a broad delete command; use a staged
+release directory and an atomic, recoverable switch instead.
 
 ## Security incident context
 
