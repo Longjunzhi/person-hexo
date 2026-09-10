@@ -21,4 +21,7 @@
   referrerpolicy="no-referrer"></script>
 
 <%- js('js/script') %>
+<% if (page.path === 'tools/index.html') { %>
+  <%- js('js/tools') %>
+<% } %>
 <%- partial('gauges-analytics') %>

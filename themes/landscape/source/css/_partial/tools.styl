@@ -1,0 +1,121 @@
+.tools-page
+  display: grid
+  gap: 24px
+
+.tool-card
+  padding: 22px
+  border: 1px solid color-border
+  border-radius: 8px
+  background: #fff
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08)
+
+  h2
+    margin: 0 0 8px
+    font-size: 22px
+
+  p
+    margin: 0 0 16px
+    color: color-grey
+
+.tool-grid
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: 16px
+
+  @media mq-mobile
+    grid-template-columns: 1fr
+
+.tool-field
+  display: flex
+  flex-direction: column
+  gap: 7px
+
+  label
+    color: color-default
+    font-weight: bold
+
+  textarea,
+  input,
+  select
+    box-sizing: border-box
+    width: 100%
+    border: 1px solid color-border
+    border-radius: 5px
+    background: #fff
+    color: color-default
+    font: 14px font-mono
+    line-height: 1.6
+
+  textarea
+    min-height: 260px
+    padding: 12px
+    resize: vertical
+
+  input,
+  select
+    min-height: 40px
+    padding: 8px 10px
+
+  textarea:focus,
+  input:focus,
+  select:focus
+    border-color: color-link
+    outline: 2px solid rgba(37, 139, 191, 0.14)
+
+.tool-actions
+  display: flex
+  flex-wrap: wrap
+  gap: 10px
+  margin: 14px 0 0
+
+.tool-button
+  padding: 9px 15px
+  border: 1px solid color-border
+  border-radius: 5px
+  background: #f7f7f7
+  color: color-default
+  cursor: pointer
+
+  &:hover
+    border-color: color-link
+    color: color-link
+
+  &.primary
+    border-color: color-link
+    background: color-link
+    color: #fff
+
+.tool-status
+  min-height: 22px
+  margin-top: 10px
+  font-size: 13px
+
+  &.success
+    color: #268b4f
+
+  &.error
+    color: #c0392b
+
+.time-result
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: 10px 18px
+  margin-top: 16px
+
+  @media mq-mobile
+    grid-template-columns: 1fr
+
+  div
+    min-width: 0
+    padding: 10px
+    border-radius: 5px
+    background: #f7f7f7
+
+  dt
+    margin-bottom: 5px
+    color: color-grey
+    font-size: 12px
+
+  dd
+    overflow-wrap: anywhere
+    font: 13px font-mono
