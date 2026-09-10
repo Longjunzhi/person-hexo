@@ -34,8 +34,9 @@ hide_author: true
           <textarea id="data-input" spellcheck="false" placeholder='粘贴 JSON，或 Python 字典：{"name": "军的小屋", "enabled": True, "value": None}'></textarea>
         </div>
         <div class="tool-field tool-output-field">
-          <div class="tool-field-heading"><label for="data-output">格式化结果</label><span>标准 JSON</span></div>
-          <textarea id="data-output" spellcheck="false" readonly placeholder="解析结果会自动显示在这里"></textarea>
+          <div class="tool-field-heading"><span class="tool-field-label">格式化结果</span><span>标准 JSON · 语法高亮</span></div>
+          <pre id="data-highlight-output" class="json-highlight-output" tabindex="0" aria-label="格式化结果"><span class="json-placeholder">解析结果会自动显示在这里</span></pre>
+          <textarea id="data-output" hidden readonly aria-hidden="true"></textarea>
         </div>
       </div>
       <div class="tool-panel-footer">

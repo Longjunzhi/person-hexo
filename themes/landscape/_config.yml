@@ -10,6 +10,9 @@ menu:
 menu_icons:
   enable: true
 
+# Increment after CSS or JavaScript changes to prevent stale browser assets.
+asset_version: 20260910-2
+
 # Content
 excerpt_link: Read More
 fancybox: false

@@ -22,6 +22,6 @@
 
 <%- js('js/script') %>
 <% if (page.path === 'tools/index.html') { %>
-  <%- js('js/tools') %>
+  <script src="<%- url_for('js/tools.js') %>?v=<%= theme.asset_version %>"></script>
 <% } %>
 <%- partial('gauges-analytics') %>
