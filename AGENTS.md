@@ -185,15 +185,15 @@ The document root is not a Git worktree. Deploy generated files from the local
 5. Synchronize `public/` to the document root with deletion enabled so unpublished
    pages and excluded downloads cannot remain stale, while explicitly excluding the
    preserved server-managed files.
-6. Keep the document root owned by `root:root` unless the active server configuration
-   requires otherwise, with directories readable/traversable and files readable by
-   Nginx.
+6. Do not recursively change ownership or permissions across the document root as
+   part of a routine release. The current server has a mixture of server-managed
+   ownership. Set safe permissions only on files transferred by the release.
 7. Run `/www/server/nginx/sbin/nginx -t` and reload only after validation succeeds.
 
 Use a dry run before the real synchronization. A representative local command is:
 
 ```bash
-rsync -azn --delete \
+rsync -rztn --delete --chmod=D755,F644 \
   --exclude='.user.ini' \
   --exclude='ba0015b642d4bd3c078a6079b9354bf7.txt' \
   --exclude='新建文本' \
@@ -201,6 +201,8 @@ rsync -azn --delete \
 ```
 
 Remove `-n` only after reviewing the deletion list and confirming the backup exists.
+Do not add `--owner` or `--group`, and do not follow the sync with a broad recursive
+`chown` or `chmod`.
 If `rsync` is unavailable, do not improvise a broad delete command; use a staged
 release directory and an atomic, recoverable switch instead.
 
