@@ -41,7 +41,7 @@ hide_author: true
   <main class="tools-workspace">
     <section id="data-formatter" class="tool-panel is-active" role="tabpanel" data-tool-panel aria-labelledby="tool-tab-data">
       <header class="tool-panel-header">
-        <div><span class="tool-eyebrow">FORMATTER</span><h2>JSON / Python 字典格式化</h2><p>自动识别两种数据格式，并实时生成规范 JSON。</p></div>
+        <div><span class="tool-eyebrow">FORMATTER</span><h2>JSON / Python 字典互转</h2><p>自动识别并格式化，也可在 JSON 与 Python 字典之间双向转换。</p></div>
         <span class="tool-local-badge">本地处理</span>
       </header>
       <div class="tool-grid tool-grid-editor">
@@ -50,7 +50,7 @@ hide_author: true
           <textarea id="data-input" spellcheck="false" placeholder='粘贴 JSON，或 Python 字典：{"name": "军的小屋", "enabled": True, "value": None}'></textarea>
         </div>
         <div class="tool-field tool-output-field">
-          <div class="tool-field-heading"><span class="tool-field-label">格式化结果</span><span>标准 JSON · 语法高亮</span></div>
+          <div class="tool-field-heading"><span class="tool-field-label">转换结果</span><span id="data-output-format">标准 JSON · 语法高亮</span></div>
           <pre id="data-highlight-output" class="json-highlight-output" tabindex="0" aria-label="格式化结果"><span class="json-placeholder">解析结果会自动显示在这里</span></pre>
           <textarea id="data-output" hidden readonly aria-hidden="true"></textarea>
         </div>
@@ -59,6 +59,8 @@ hide_author: true
         <div class="tool-actions">
           <button id="format-data" class="tool-button primary" type="button">格式化</button>
           <button id="compact-data" class="tool-button" type="button">压缩</button>
+          <button id="json-to-python" class="tool-button" type="button">JSON → Python 字典</button>
+          <button id="python-to-json" class="tool-button" type="button">Python 字典 → JSON</button>
           <button id="copy-data" class="tool-button" type="button">复制结果</button>
           <button id="clear-data" class="tool-button subtle" type="button">清空</button>
         </div>

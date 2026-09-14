@@ -3,9 +3,12 @@
 
   .outer.no-sidebar
     box-sizing: border-box
-    max-width: 1380px
-    padding-left: 24px
-    padding-right: 24px
+    width: calc(100% - 48px)
+    max-width: 1680px
+    margin-left: auto
+    margin-right: auto
+    padding-left: 0
+    padding-right: 0
 
   .main-full-width
     float: none
@@ -517,8 +520,7 @@
 
 @media mq-tablet
   .tools-body .outer.no-sidebar
-    padding-left: 14px
-    padding-right: 14px
+    width: calc(100% - 28px)
 
   .tools-shell
     grid-template-columns: 195px minmax(0, 1fr)
@@ -538,8 +540,7 @@
 
 @media mq-mobile
   .tools-body .outer.no-sidebar
-    padding-left: 10px
-    padding-right: 10px
+    width: calc(100% - 20px)
 
   .tools-shell
     grid-template-columns: 1fr
