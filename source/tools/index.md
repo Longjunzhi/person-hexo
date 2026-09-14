@@ -22,6 +22,18 @@ hide_author: true
         <span class="tools-nav-icon tools-nav-color-icon" aria-hidden="true">▦</span>
         <span><strong>色块工具</strong><small>色阶 / CSS 变量</small></span>
       </button>
+      <button id="tool-tab-url" class="tools-nav-item" type="button" role="tab" data-tool-target="url-codec" aria-controls="url-codec" aria-selected="false">
+        <span class="tools-nav-icon" aria-hidden="true">URL</span>
+        <span><strong>URL 编解码</strong><small>编码 / Query 参数</small></span>
+      </button>
+      <button id="tool-tab-base64" class="tools-nav-item" type="button" role="tab" data-tool-target="base64-unicode" aria-controls="base64-unicode" aria-selected="false">
+        <span class="tools-nav-icon" aria-hidden="true">64</span>
+        <span><strong>Base64 / Unicode</strong><small>文本双向转换</small></span>
+      </button>
+      <button id="tool-tab-sql" class="tools-nav-item" type="button" role="tab" data-tool-target="sql-formatter" aria-controls="sql-formatter" aria-selected="false">
+        <span class="tools-nav-icon" aria-hidden="true">SQL</span>
+        <span><strong>SQL 格式化</strong><small>缩进 / 压缩</small></span>
+      </button>
     </div>
     <div class="tools-nav-note">所有数据仅在本机浏览器处理，不会上传服务器。</div>
   </aside>
@@ -106,6 +118,82 @@ hide_author: true
         <div><span>HSL</span><strong id="color-hsl-value">hsl(200, 98%, 39%)</strong></div>
       </div>
       <div id="color-status" class="tool-status" role="status" aria-live="polite">点击任意色块可复制对应的 HEX 值。</div>
+    </section>
+    <section id="url-codec" class="tool-panel tool-panel-compact" role="tabpanel" data-tool-panel aria-labelledby="tool-tab-url" hidden>
+      <header class="tool-panel-header">
+        <div><span class="tool-eyebrow">URL CODEC</span><h2>URL 编解码与 Query 参数</h2><p>对文本进行 URL 组件编解码，或解析、重组查询参数。</p></div>
+        <span class="tool-local-badge">本地处理</span>
+      </header>
+      <div class="tool-grid tool-grid-editor">
+        <div class="tool-field">
+          <div class="tool-field-heading"><label for="url-input">输入内容</label><span>文本 / URL / Query</span></div>
+          <textarea id="url-input" class="tool-textarea-compact" spellcheck="false" placeholder="例如：https://example.com/search?q=中文&tag=Hexo"></textarea>
+        </div>
+        <div class="tool-field">
+          <div class="tool-field-heading"><label for="url-output">转换结果</label><span>可直接编辑</span></div>
+          <textarea id="url-output" class="tool-textarea-compact" spellcheck="false" placeholder="结果会显示在这里"></textarea>
+        </div>
+      </div>
+      <div class="tool-actions">
+        <button id="url-encode" class="tool-button primary" type="button">编码组件</button>
+        <button id="url-decode" class="tool-button" type="button">解码组件</button>
+        <button id="url-parse-query" class="tool-button" type="button">解析 Query</button>
+        <button id="url-build-query" class="tool-button" type="button">重组 Query</button>
+        <button id="url-copy" class="tool-button" type="button">复制结果</button>
+        <button id="url-clear" class="tool-button subtle" type="button">清空</button>
+      </div>
+      <div class="tool-help">Query 解析结果为 JSON 对象；同名参数会保留为数组。重组时请输入 JSON 对象。</div>
+      <div id="url-status" class="tool-status" role="status" aria-live="polite"></div>
+    </section>
+    <section id="base64-unicode" class="tool-panel tool-panel-compact" role="tabpanel" data-tool-panel aria-labelledby="tool-tab-base64" hidden>
+      <header class="tool-panel-header">
+        <div><span class="tool-eyebrow">TEXT CODEC</span><h2>Base64 / Unicode 转换</h2><p>支持 UTF-8 文本、Base64 和 Unicode 转义双向转换。</p></div>
+        <span class="tool-local-badge tool-warning-badge">编码不是加密</span>
+      </header>
+      <div class="tool-grid tool-grid-editor">
+        <div class="tool-field">
+          <div class="tool-field-heading"><label for="codec-input">输入内容</label><span>UTF-8</span></div>
+          <textarea id="codec-input" class="tool-textarea-compact" spellcheck="false" placeholder="输入中文、Emoji、Base64 或 Unicode 转义"></textarea>
+        </div>
+        <div class="tool-field">
+          <div class="tool-field-heading"><label for="codec-output">转换结果</label><span>纯文本</span></div>
+          <textarea id="codec-output" class="tool-textarea-compact" spellcheck="false" placeholder="结果会显示在这里"></textarea>
+        </div>
+      </div>
+      <div class="tool-actions">
+        <button id="base64-encode" class="tool-button primary" type="button">Base64 编码</button>
+        <button id="base64-decode" class="tool-button" type="button">Base64 解码</button>
+        <button id="unicode-encode" class="tool-button" type="button">Unicode 转义</button>
+        <button id="unicode-decode" class="tool-button" type="button">Unicode 还原</button>
+        <button id="codec-copy" class="tool-button" type="button">复制结果</button>
+        <button id="codec-clear" class="tool-button subtle" type="button">清空</button>
+      </div>
+      <div class="tool-help">内容仅在浏览器中处理。Base64 可以被任何人还原，请勿当作加密方式。</div>
+      <div id="codec-status" class="tool-status" role="status" aria-live="polite"></div>
+    </section>
+    <section id="sql-formatter" class="tool-panel tool-panel-compact" role="tabpanel" data-tool-panel aria-labelledby="tool-tab-sql" hidden>
+      <header class="tool-panel-header">
+        <div><span class="tool-eyebrow">SQL FORMATTER</span><h2>SQL 格式化</h2><p>为常用 SQL 语句添加换行与缩进，也可快速压缩空白。</p></div>
+        <span class="tool-local-badge">零依赖</span>
+      </header>
+      <div class="tool-grid tool-grid-editor">
+        <div class="tool-field">
+          <div class="tool-field-heading"><label for="sql-input">原始 SQL</label><span>常用 SQL 方言</span></div>
+          <textarea id="sql-input" class="tool-textarea-compact" spellcheck="false" placeholder="SELECT u.id, u.name FROM users u WHERE u.status = 1 ORDER BY u.id DESC;"></textarea>
+        </div>
+        <div class="tool-field">
+          <div class="tool-field-heading"><label for="sql-output">格式化结果</label><span>2 空格缩进</span></div>
+          <textarea id="sql-output" class="tool-textarea-compact" spellcheck="false" placeholder="结果会显示在这里"></textarea>
+        </div>
+      </div>
+      <div class="tool-actions">
+        <button id="sql-format" class="tool-button primary" type="button">格式化</button>
+        <button id="sql-compact" class="tool-button" type="button">压缩</button>
+        <button id="sql-copy" class="tool-button" type="button">复制结果</button>
+        <button id="sql-clear" class="tool-button subtle" type="button">清空</button>
+      </div>
+      <div class="tool-help">轻量格式化不会执行或验证 SQL；字符串、标识符和注释内容会原样保留。</div>
+      <div id="sql-status" class="tool-status" role="status" aria-live="polite"></div>
     </section>
   </main>
 </div>
