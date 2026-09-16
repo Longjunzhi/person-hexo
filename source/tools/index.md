@@ -30,9 +30,17 @@ hide_author: true
         <span class="tools-nav-icon" aria-hidden="true">64</span>
         <span><strong>Base64 / Unicode</strong><small>文本双向转换</small></span>
       </button>
+      <button id="tool-tab-utf8" class="tools-nav-item" type="button" role="tab" data-tool-target="utf8-codec" aria-controls="utf8-codec" aria-selected="false">
+        <span class="tools-nav-icon" aria-hidden="true">UTF</span>
+        <span><strong>UTF-8 编码转换</strong><small>字节 / 转义 / URL</small></span>
+      </button>
       <button id="tool-tab-sql" class="tools-nav-item" type="button" role="tab" data-tool-target="sql-formatter" aria-controls="sql-formatter" aria-selected="false">
         <span class="tools-nav-icon" aria-hidden="true">SQL</span>
         <span><strong>SQL 格式化</strong><small>缩进 / 压缩</small></span>
+      </button>
+      <button id="tool-tab-rsa" class="tools-nav-item" type="button" role="tab" data-tool-target="rsa-key-generator" aria-controls="rsa-key-generator" aria-selected="false">
+        <span class="tools-nav-icon" aria-hidden="true">RSA</span>
+        <span><strong>RSA 公私钥生成</strong><small>PKCS#8 / PKCS#1</small></span>
       </button>
     </div>
     <div class="tools-nav-note">所有数据仅在本机浏览器处理，不会上传服务器。</div>
@@ -173,6 +181,45 @@ hide_author: true
       <div class="tool-help">内容仅在浏览器中处理。Base64 可以被任何人还原，请勿当作加密方式。</div>
       <div id="codec-status" class="tool-status" role="status" aria-live="polite"></div>
     </section>
+    <section id="utf8-codec" class="tool-panel tool-panel-compact" role="tabpanel" data-tool-panel aria-labelledby="tool-tab-utf8" hidden>
+      <header class="tool-panel-header">
+        <div><span class="tool-eyebrow">UTF-8 CODEC</span><h2>UTF-8 编码转换</h2><p>将中文、英文、Emoji 等文本转换为 UTF-8 字节表示，也可反向还原。</p></div>
+        <span class="tool-local-badge tool-warning-badge">编码不是加密</span>
+      </header>
+      <div class="utf8-toolbar">
+        <div class="tool-field">
+          <div class="tool-field-heading"><label for="utf8-format">编码格式</label><span>选择输出或输入格式</span></div>
+          <select id="utf8-format">
+            <option value="bytes">字节流</option>
+            <option value="sequence">序列</option>
+            <option value="mapping">对照</option>
+            <option value="percent">%XX</option>
+            <option value="slash-x">\xXX</option>
+            <option value="url">URL</option>
+          </select>
+        </div>
+        <div class="utf8-format-example"><span>格式示例</span><code id="utf8-format-example">E4 B8 AD</code></div>
+      </div>
+      <div class="tool-grid tool-grid-editor">
+        <div class="tool-field">
+          <div class="tool-field-heading"><label for="utf8-input">转换前</label><span id="utf8-input-hint">UTF-8 文本</span></div>
+          <textarea id="utf8-input" class="tool-textarea-compact" spellcheck="false" placeholder="输入需要编码的文本，例如：中文 UTF-8 😀"></textarea>
+        </div>
+        <div class="tool-field">
+          <div class="tool-field-heading"><label for="utf8-output">转换后</label><button id="utf8-copy" class="tool-text-button" type="button">复制结果</button></div>
+          <textarea id="utf8-output" class="tool-textarea-compact" readonly spellcheck="false" placeholder="转换结果会显示在这里"></textarea>
+        </div>
+      </div>
+      <div class="tool-actions">
+        <button id="utf8-encode" class="tool-button primary" type="button">UTF-8 编码</button>
+        <button id="utf8-decode" class="tool-button" type="button">UTF-8 解码</button>
+        <button id="utf8-swap" class="tool-button" type="button">结果移到输入</button>
+        <button id="utf8-clear" class="tool-button subtle" type="button">清空</button>
+      </div>
+      <div class="tool-help">字节流：<code>E4 B8 AD</code>；序列：<code>228, 184, 173</code>；对照：逐字符显示 Unicode 码点和 UTF-8 字节。解码时也兼容连续十六进制、<code>0xXX</code>、空格、逗号和换行。</div>
+      <div class="tool-help">UTF-8 使用 1～4 个字节表示一个 Unicode 码点。所有转换仅在当前浏览器完成；编码结果可以被还原，请勿用它保护敏感信息。</div>
+      <div id="utf8-status" class="tool-status" role="status" aria-live="polite"></div>
+    </section>
     <section id="sql-formatter" class="tool-panel tool-panel-compact" role="tabpanel" data-tool-panel aria-labelledby="tool-tab-sql" hidden>
       <header class="tool-panel-header">
         <div><span class="tool-eyebrow">SQL FORMATTER</span><h2>SQL 格式化</h2><p>为常用 SQL 语句添加换行与缩进，也可快速压缩空白。</p></div>
@@ -196,6 +243,51 @@ hide_author: true
       </div>
       <div class="tool-help">轻量格式化不会执行或验证 SQL；字符串、标识符和注释内容会原样保留。</div>
       <div id="sql-status" class="tool-status" role="status" aria-live="polite"></div>
+    </section>
+    <section id="rsa-key-generator" class="tool-panel tool-panel-compact tool-panel-rsa" role="tabpanel" data-tool-panel aria-labelledby="tool-tab-rsa" hidden>
+      <header class="tool-panel-header">
+        <div><span class="tool-eyebrow">RSA KEY GENERATOR</span><h2>RSA 公私钥生成</h2><p>生成 PEM 格式的 RSA 公私钥对，支持 PKCS#8 与 PKCS#1。</p></div>
+        <span class="tool-local-badge">本地生成</span>
+      </header>
+      <div class="rsa-options">
+        <fieldset>
+          <legend>密钥长度</legend>
+          <div class="tool-choice-group">
+            <label><input type="radio" name="rsa-bits" value="512">512 bit</label>
+            <label><input type="radio" name="rsa-bits" value="1024">1024 bit</label>
+            <label><input type="radio" name="rsa-bits" value="2048" checked>2048 bit</label>
+            <label><input type="radio" name="rsa-bits" value="4096">4096 bit</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>密钥格式</legend>
+          <div class="tool-choice-group">
+            <label><input type="radio" name="rsa-format" value="pkcs8" checked>PKCS#8</label>
+            <label><input type="radio" name="rsa-format" value="pkcs1">PKCS#1</label>
+          </div>
+        </fieldset>
+        <div class="tool-field rsa-password-field">
+          <div class="tool-field-heading"><label for="rsa-password">私钥密码</label><span>可选，仅 PKCS#8</span></div>
+          <input id="rsa-password" type="password" autocomplete="new-password" placeholder="留空则不加密私钥">
+        </div>
+      </div>
+      <div class="tool-actions rsa-generate-actions">
+        <button id="rsa-generate" class="tool-button primary" type="button">生成密钥对</button>
+        <button id="rsa-clear" class="tool-button subtle" type="button">清空</button>
+      </div>
+      <div class="tool-grid tool-grid-editor rsa-output-grid">
+        <div class="tool-field">
+          <div class="tool-field-heading"><label for="rsa-public-key">RSA 公钥</label><button id="rsa-copy-public" class="tool-text-button" type="button">复制公钥</button></div>
+          <textarea id="rsa-public-key" class="tool-textarea-compact rsa-key-output" readonly spellcheck="false" placeholder="生成的 PEM 公钥会显示在这里"></textarea>
+        </div>
+        <div class="tool-field">
+          <div class="tool-field-heading"><label for="rsa-private-key">RSA 私钥</label><button id="rsa-copy-private" class="tool-text-button" type="button">复制私钥</button></div>
+          <textarea id="rsa-private-key" class="tool-textarea-compact rsa-key-output" readonly spellcheck="false" placeholder="生成的 PEM 私钥会显示在这里"></textarea>
+        </div>
+      </div>
+      <div class="tool-help rsa-security-note"><strong>安全提示：</strong>密钥仅在当前浏览器生成，不会上传服务器。2048 bit 是通用默认值；512/1024 bit 已不安全，仅用于旧系统兼容测试。请妥善保管私钥，不要在公共设备生成生产密钥。</div>
+      <div class="tool-help">PKCS#8 常用于 Java、PHP 等程序；PKCS#1 是较早的 RSA 专用格式。密码保护使用 PBES2、PBKDF2-SHA256 与 AES-256-CBC，输出 <code>ENCRYPTED PRIVATE KEY</code>。</div>
+      <div id="rsa-status" class="tool-status" role="status" aria-live="polite"></div>
     </section>
   </main>
 </div>

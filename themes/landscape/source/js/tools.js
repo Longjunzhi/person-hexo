@@ -21,9 +21,17 @@
   var codecInput = document.getElementById('codec-input');
   var codecOutput = document.getElementById('codec-output');
   var codecStatus = document.getElementById('codec-status');
+  var utf8Input = document.getElementById('utf8-input');
+  var utf8Output = document.getElementById('utf8-output');
+  var utf8Format = document.getElementById('utf8-format');
+  var utf8Status = document.getElementById('utf8-status');
   var sqlInput = document.getElementById('sql-input');
   var sqlOutput = document.getElementById('sql-output');
   var sqlStatus = document.getElementById('sql-status');
+  var rsaPublicKey = document.getElementById('rsa-public-key');
+  var rsaPrivateKey = document.getElementById('rsa-private-key');
+  var rsaPassword = document.getElementById('rsa-password');
+  var rsaStatus = document.getElementById('rsa-status');
   var toolNavItems = document.querySelectorAll('[data-tool-target]');
   var toolPanels = document.querySelectorAll('[data-tool-panel]');
   var parseTimer;
@@ -616,6 +624,89 @@
       });
   }
 
+  var utf8FormatDetails = {
+    bytes: {example: 'E4 B8 AD', hint: '十六进制字节流'},
+    sequence: {example: '228, 184, 173', hint: '十进制字节序列'},
+    mapping: {example: '中 U+4E2D → E4 B8 AD', hint: '逐字符编码对照'},
+    percent: {example: '%E4%B8%AD', hint: '%XX 百分号字节'},
+    'slash-x': {example: '\\xE4\\xB8\\xAD', hint: '\\xXX 字节转义'},
+    url: {example: '%E4%B8%AD', hint: 'URL 编码文本'}
+  };
+
+  function byteToHex(byte) {
+    return byte.toString(16).toUpperCase().padStart(2, '0');
+  }
+
+  function encodeUtf8Mapping(value) {
+    var encoder = new TextEncoder();
+    return Array.from(value).map(function(character) {
+      var bytes = Array.from(encoder.encode(character)).map(byteToHex).join(' ');
+      var labels = {' ': '␠', '\n': '\\n', '\r': '\\r', '\t': '\\t'};
+      var label = Object.prototype.hasOwnProperty.call(labels, character) ? labels[character] : character;
+      return label + ' U+' + character.codePointAt(0).toString(16).toUpperCase().padStart(4, '0') + ' → ' + bytes;
+    }).join('\n');
+  }
+
+  function encodeUtf8(value, format) {
+    if (!value) throw new Error('请输入需要编码的文本。');
+    if (format === 'url') return encodeURIComponent(value);
+    if (format === 'mapping') return encodeUtf8Mapping(value);
+    var bytes = Array.from(new TextEncoder().encode(value));
+    if (format === 'sequence') return bytes.join(', ');
+    if (format === 'percent') return bytes.map(function(byte) { return '%' + byteToHex(byte); }).join('');
+    if (format === 'slash-x') return bytes.map(function(byte) { return '\\x' + byteToHex(byte); }).join('');
+    return bytes.map(byteToHex).join(' ');
+  }
+
+  function parseDecimalBytes(value) {
+    var tokens = value.trim().split(/[\s,;]+/).filter(Boolean);
+    if (!tokens.length || tokens.some(function(token) { return !/^\d{1,3}$/.test(token) || Number(token) > 255; })) {
+      throw new Error('序列必须由 0～255 的十进制字节组成。');
+    }
+    return new Uint8Array(tokens.map(Number));
+  }
+
+  function parseHexBytes(value, mapping) {
+    var text = value.trim();
+    if (mapping) {
+      var lines = text.split(/\r?\n/).filter(function(line) { return line.trim(); });
+      if (!lines.length || lines.some(function(line) { return line.indexOf('→') === -1 && line.indexOf('->') === -1; })) {
+        throw new Error('对照格式应为“字符 U+码点 → UTF-8 字节”。');
+      }
+      text = lines.map(function(line) { return line.split(/→|->/).pop(); }).join(' ');
+    }
+    text = text.replace(/%|\\x|0x/gi, '').replace(/[\s,:;_-]+/g, '');
+    if (!text || !/^[0-9a-fA-F]+$/.test(text) || text.length % 2 !== 0) {
+      throw new Error('请输入有效的 UTF-8 十六进制字节，每个字节需要两位。');
+    }
+    var bytes = [];
+    for (var index = 0; index < text.length; index += 2) bytes.push(parseInt(text.slice(index, index + 2), 16));
+    return new Uint8Array(bytes);
+  }
+
+  function decodeUtf8(value, format) {
+    if (!value.trim()) throw new Error('请输入需要解码的 UTF-8 内容。');
+    if (format === 'url') {
+      try {
+        return decodeURIComponent(value);
+      } catch (error) {
+        throw new Error('请输入有效的 URL 编码内容。');
+      }
+    }
+    var bytes = format === 'sequence' ? parseDecimalBytes(value) : parseHexBytes(value, format === 'mapping');
+    try {
+      return new TextDecoder('utf-8', {fatal: true}).decode(bytes);
+    } catch (error) {
+      throw new Error('字节序列不是有效的 UTF-8 编码。');
+    }
+  }
+
+  function updateUtf8FormatHelp() {
+    var detail = utf8FormatDetails[utf8Format.value];
+    document.getElementById('utf8-format-example').textContent = detail.example;
+    document.getElementById('utf8-input-hint').textContent = detail.hint;
+  }
+
   function protectSqlParts(value) {
     var parts = [];
     var pattern = /(?:'(?:''|\\.|[^'\\])*'|"(?:""|\\.|[^"\\])*"|`(?:``|[^`])*`|\[(?:\]\]|[^\]])*\]|--[^\r\n]*|#[^\r\n]*|\/\*[\s\S]*?\*\/)/g;
@@ -665,6 +756,157 @@
     if (!protectedSql.text) throw new Error('请输入需要压缩的 SQL。');
     var sql = protectedSql.text.replace(/\s+/g, ' ').replace(/\s*([,;()])\s*/g, '$1').trim();
     return restoreSqlParts(sql, protectedSql.parts);
+  }
+
+  function bytesToPem(bytes, label, headers) {
+    var binary = '';
+    var array = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+    for (var offset = 0; offset < array.length; offset += 32768) {
+      binary += String.fromCharCode.apply(null, array.subarray(offset, offset + 32768));
+    }
+    var body = btoa(binary).match(/.{1,64}/g).join('\n');
+    return '-----BEGIN ' + label + '-----\n' + (headers ? headers + '\n\n' : '') + body + '\n-----END ' + label + '-----';
+  }
+
+  function readDerLength(bytes, offset) {
+    var first = bytes[offset];
+    if (first < 128) return {length: first, bytes: 1};
+    var count = first & 127;
+    if (!count || count > 4) throw new Error('无法解析生成的密钥格式。');
+    var length = 0;
+    for (var index = 0; index < count; index += 1) length = length * 256 + bytes[offset + 1 + index];
+    return {length: length, bytes: count + 1};
+  }
+
+  function readDerElement(bytes, offset) {
+    var lengthInfo = readDerLength(bytes, offset + 1);
+    var contentStart = offset + 1 + lengthInfo.bytes;
+    return {tag: bytes[offset], start: offset, contentStart: contentStart, end: contentStart + lengthInfo.length};
+  }
+
+  function extractPkcs1Private(pkcs8) {
+    var bytes = new Uint8Array(pkcs8);
+    var sequence = readDerElement(bytes, 0);
+    var cursor = sequence.contentStart;
+    cursor = readDerElement(bytes, cursor).end;
+    cursor = readDerElement(bytes, cursor).end;
+    var privateKey = readDerElement(bytes, cursor);
+    if (privateKey.tag !== 4) throw new Error('无法从 PKCS#8 提取 PKCS#1 私钥。');
+    return bytes.slice(privateKey.contentStart, privateKey.end);
+  }
+
+  function extractPkcs1Public(spki) {
+    var bytes = new Uint8Array(spki);
+    var sequence = readDerElement(bytes, 0);
+    var cursor = readDerElement(bytes, sequence.contentStart).end;
+    var bitString = readDerElement(bytes, cursor);
+    if (bitString.tag !== 3 || bytes[bitString.contentStart] !== 0) throw new Error('无法从公钥中提取 PKCS#1 数据。');
+    return bytes.slice(bitString.contentStart + 1, bitString.end);
+  }
+
+  function derLength(length) {
+    if (length < 128) return new Uint8Array([length]);
+    var bytes = [];
+    while (length) {
+      bytes.unshift(length & 255);
+      length >>>= 8;
+    }
+    return new Uint8Array([128 | bytes.length].concat(bytes));
+  }
+
+  function concatBytes(parts) {
+    var length = parts.reduce(function(total, part) { return total + part.length; }, 0);
+    var result = new Uint8Array(length);
+    var offset = 0;
+    parts.forEach(function(part) { result.set(part, offset); offset += part.length; });
+    return result;
+  }
+
+  function der(tag, content) {
+    return concatBytes([new Uint8Array([tag]), derLength(content.length), content]);
+  }
+
+  function derSequence(parts) { return der(48, concatBytes(parts)); }
+  function derOctet(bytes) { return der(4, bytes); }
+  function derInteger(value) {
+    var bytes = [];
+    do { bytes.unshift(value & 255); value >>>= 8; } while (value);
+    if (bytes[0] & 128) bytes.unshift(0);
+    return der(2, new Uint8Array(bytes));
+  }
+  function derOid(bytes) { return der(6, new Uint8Array(bytes)); }
+
+  async function encryptPkcs8(pkcs8, password) {
+    var encoder = new TextEncoder();
+    var salt = crypto.getRandomValues(new Uint8Array(16));
+    var iv = crypto.getRandomValues(new Uint8Array(16));
+    var iterations = 210000;
+    var passwordKey = await crypto.subtle.importKey('raw', encoder.encode(password), 'PBKDF2', false, ['deriveKey']);
+    var aesKey = await crypto.subtle.deriveKey(
+      {name: 'PBKDF2', hash: 'SHA-256', salt: salt, iterations: iterations},
+      passwordKey,
+      {name: 'AES-CBC', length: 256},
+      false,
+      ['encrypt']
+    );
+    var encrypted = new Uint8Array(await crypto.subtle.encrypt({name: 'AES-CBC', iv: iv}, aesKey, pkcs8));
+    var oidPbes2 = derOid([42, 134, 72, 134, 247, 13, 1, 5, 13]);
+    var oidPbkdf2 = derOid([42, 134, 72, 134, 247, 13, 1, 5, 12]);
+    var oidHmacSha256 = derOid([42, 134, 72, 134, 247, 13, 2, 9]);
+    var oidAes256Cbc = derOid([96, 134, 72, 1, 101, 3, 4, 1, 42]);
+    var nullValue = der(5, new Uint8Array(0));
+    var prf = derSequence([oidHmacSha256, nullValue]);
+    var pbkdf2Params = derSequence([derOctet(salt), derInteger(iterations), derInteger(32), prf]);
+    var kdf = derSequence([oidPbkdf2, pbkdf2Params]);
+    var encryptionScheme = derSequence([oidAes256Cbc, derOctet(iv)]);
+    var pbes2Params = derSequence([kdf, encryptionScheme]);
+    return derSequence([derSequence([oidPbes2, pbes2Params]), derOctet(encrypted)]);
+  }
+
+  async function generateRsaKeyPair() {
+    if (!window.crypto || !crypto.subtle) {
+      setStatus(rsaStatus, '当前浏览器不支持 Web Crypto，请升级浏览器后重试。', 'error');
+      return;
+    }
+    var bits = Number(document.querySelector('input[name="rsa-bits"]:checked').value);
+    var format = document.querySelector('input[name="rsa-format"]:checked').value;
+    var password = rsaPassword.value;
+    if (format === 'pkcs1' && password) {
+      setStatus(rsaStatus, 'PKCS#1 不输出旧式密码加密 PEM；请清空密码或改选 PKCS#8。', 'error');
+      return;
+    }
+    var button = document.getElementById('rsa-generate');
+    button.disabled = true;
+    button.textContent = '生成中…';
+    setStatus(rsaStatus, bits === 4096 ? '正在生成 4096 bit 密钥，可能需要一些时间…' : '正在生成密钥…', '');
+    try {
+      var keyPair = await crypto.subtle.generateKey(
+        {name: 'RSA-OAEP', modulusLength: bits, publicExponent: new Uint8Array([1, 0, 1]), hash: 'SHA-256'},
+        true,
+        ['encrypt', 'decrypt']
+      );
+      var spki = await crypto.subtle.exportKey('spki', keyPair.publicKey);
+      var pkcs8 = await crypto.subtle.exportKey('pkcs8', keyPair.privateKey);
+      if (format === 'pkcs1') {
+        rsaPublicKey.value = bytesToPem(extractPkcs1Public(spki), 'RSA PUBLIC KEY');
+        rsaPrivateKey.value = bytesToPem(extractPkcs1Private(pkcs8), 'RSA PRIVATE KEY');
+      } else {
+        rsaPublicKey.value = bytesToPem(spki, 'PUBLIC KEY');
+        if (password) {
+          rsaPrivateKey.value = bytesToPem(await encryptPkcs8(pkcs8, password), 'ENCRYPTED PRIVATE KEY');
+        } else {
+          rsaPrivateKey.value = bytesToPem(pkcs8, 'PRIVATE KEY');
+        }
+      }
+      setStatus(rsaStatus, bits + ' bit ' + format.toUpperCase() + ' 密钥对生成成功' + (password ? '，私钥已加密。' : '。'), 'success');
+    } catch (error) {
+      rsaPublicKey.value = '';
+      rsaPrivateKey.value = '';
+      setStatus(rsaStatus, '密钥生成失败：' + (error.message || '当前浏览器可能不支持所选长度。'), 'error');
+    } finally {
+      button.disabled = false;
+      button.textContent = '生成密钥对';
+    }
   }
 
   document.getElementById('format-data').addEventListener('click', function() { renderData(false); });
@@ -775,6 +1017,36 @@
     codecInput.focus();
   });
 
+  utf8Format.addEventListener('change', updateUtf8FormatHelp);
+  document.getElementById('utf8-encode').addEventListener('click', function() {
+    runTextTransform(utf8Input, utf8Output, utf8Status, function(value) {
+      return encodeUtf8(value, utf8Format.value);
+    }, 'UTF-8 编码完成。');
+  });
+  document.getElementById('utf8-decode').addEventListener('click', function() {
+    runTextTransform(utf8Input, utf8Output, utf8Status, function(value) {
+      return decodeUtf8(value, utf8Format.value);
+    }, 'UTF-8 解码完成。');
+  });
+  document.getElementById('utf8-copy').addEventListener('click', function() {
+    copyText(utf8Output.value, utf8Status, '已复制转换结果。');
+  });
+  document.getElementById('utf8-swap').addEventListener('click', function() {
+    if (!utf8Output.value) {
+      setStatus(utf8Status, '没有可移到输入框的结果。', 'error');
+      return;
+    }
+    utf8Input.value = utf8Output.value;
+    utf8Output.value = '';
+    setStatus(utf8Status, '结果已移到输入框，可继续反向转换。', 'success');
+  });
+  document.getElementById('utf8-clear').addEventListener('click', function() {
+    utf8Input.value = '';
+    utf8Output.value = '';
+    setStatus(utf8Status, '', '');
+    utf8Input.focus();
+  });
+
   document.getElementById('sql-format').addEventListener('click', function() {
     runTextTransform(sqlInput, sqlOutput, sqlStatus, formatSql, 'SQL 格式化完成。');
   });
@@ -791,6 +1063,21 @@
     sqlInput.focus();
   });
 
+  document.getElementById('rsa-generate').addEventListener('click', generateRsaKeyPair);
+  document.getElementById('rsa-copy-public').addEventListener('click', function() {
+    copyText(rsaPublicKey.value, rsaStatus, '已复制 RSA 公钥。');
+  });
+  document.getElementById('rsa-copy-private').addEventListener('click', function() {
+    copyText(rsaPrivateKey.value, rsaStatus, '已复制 RSA 私钥，请注意安全保管。');
+  });
+  document.getElementById('rsa-clear').addEventListener('click', function() {
+    rsaPublicKey.value = '';
+    rsaPrivateKey.value = '';
+    rsaPassword.value = '';
+    setStatus(rsaStatus, '', '');
+  });
+
   renderTime(Date.now());
   renderColorPalette('#0284C7');
+  updateUtf8FormatHelp();
 })();

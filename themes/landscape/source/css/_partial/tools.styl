@@ -426,6 +426,99 @@
   font-size: 12px
   line-height: 1.65
 
+.rsa-options
+  display: grid
+  grid-template-columns: minmax(300px, 1.4fr) minmax(180px, .8fr) minmax(220px, 1fr)
+  align-items: end
+  gap: 14px
+
+  fieldset
+    min-width: 0
+    margin: 0
+    padding: 10px 12px 12px
+    border: 1px solid #dbe3ed
+    border-radius: 9px
+
+  legend
+    padding: 0 5px
+    color: #334155
+    font-size: 12px
+    font-weight: 700
+
+.tool-choice-group
+  display: flex
+  min-height: 28px
+  align-items: center
+  flex-wrap: wrap
+  gap: 8px 14px
+
+  label
+    display: inline-flex
+    align-items: center
+    gap: 5px
+    color: #475569
+    font-size: 12px
+    cursor: pointer
+
+  input
+    accent-color: #0284c7
+
+.rsa-generate-actions
+  margin-top: 14px
+
+.rsa-output-grid
+  margin-top: 16px
+
+.tool-panel-rsa .rsa-key-output
+  min-height: 300px
+  max-height: 520px
+  font-size: 12px
+
+.tool-text-button
+  padding: 2px 5px
+  border: 0
+  background: transparent
+  color: #0284c7
+  font-size: 11px
+  font-weight: 700
+  cursor: pointer
+
+  &:hover
+    color: #0369a1
+    text-decoration: underline
+
+.rsa-security-note
+  border-left-color: #fbbf24
+  background: #fffbeb
+
+.utf8-toolbar
+  display: grid
+  grid-template-columns: minmax(220px, 360px) minmax(220px, 1fr)
+  align-items: end
+  gap: 14px
+  margin-bottom: 16px
+
+.utf8-format-example
+  display: flex
+  min-height: 46px
+  box-sizing: border-box
+  align-items: center
+  gap: 10px
+  padding: 9px 12px
+  border: 1px solid #dbe3ed
+  border-radius: 9px
+  background: #f8fafc
+
+  span
+    color: #94a3b8
+    font-size: 11px
+    font-weight: 700
+
+  code
+    overflow-wrap: anywhere
+    color: #334155
+    font: 12px font-mono
+
 .color-picker-shell
   display: grid
   grid-template-columns: 46px 1fr
@@ -535,6 +628,12 @@
   .color-palette
     grid-template-columns: repeat(5, 1fr)
 
+  .rsa-options
+    grid-template-columns: 1fr 1fr
+
+  .rsa-password-field
+    grid-column: 1 / -1
+
   .color-swatch
     min-height: 82px
 
@@ -603,8 +702,13 @@
     text-align: left
 
   .color-controls,
-  .color-summary
+  .color-summary,
+  .rsa-options,
+  .utf8-toolbar
     grid-template-columns: 1fr
+
+  .rsa-password-field
+    grid-column: auto
 
   .color-palette
     grid-template-columns: repeat(2, 1fr)
