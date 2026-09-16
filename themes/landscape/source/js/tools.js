@@ -32,6 +32,15 @@
   var rsaPrivateKey = document.getElementById('rsa-private-key');
   var rsaPassword = document.getElementById('rsa-password');
   var rsaStatus = document.getElementById('rsa-status');
+  var qrTextInput = document.getElementById('qr-text-input');
+  var qrOutputCanvas = document.getElementById('qr-output-canvas');
+  var qrGenerateStatus = document.getElementById('qr-generate-status');
+  var qrImageInput = document.getElementById('qr-image-input');
+  var qrCameraInput = document.getElementById('qr-camera-input');
+  var qrDropZone = document.getElementById('qr-drop-zone');
+  var qrScanCanvas = document.getElementById('qr-scan-canvas');
+  var qrResult = document.getElementById('qr-result');
+  var qrScanStatus = document.getElementById('qr-scan-status');
   var toolNavItems = document.querySelectorAll('[data-tool-target]');
   var toolPanels = document.querySelectorAll('[data-tool-panel]');
   var parseTimer;
@@ -909,6 +918,185 @@
     }
   }
 
+  function generateQrCode() {
+    var text = qrTextInput.value;
+    if (!text.trim()) {
+      setStatus(qrGenerateStatus, '请输入需要生成二维码的文字或网址。', 'error');
+      return;
+    }
+    if (typeof window.qrcode !== 'function') {
+      setStatus(qrGenerateStatus, '二维码生成组件加载失败，请刷新页面重试。', 'error');
+      return;
+    }
+    try {
+      var level = document.getElementById('qr-level').value;
+      var requestedSize = Number(document.getElementById('qr-size').value);
+      window.qrcode.stringToBytes = window.qrcode.stringToBytesFuncs['UTF-8'];
+      var qr = window.qrcode(0, level);
+      qr.addData(text);
+      qr.make();
+      var moduleCount = qr.getModuleCount();
+      var quietModules = 4;
+      var cellSize = Math.max(1, Math.floor(requestedSize / (moduleCount + quietModules * 2)));
+      var actualSize = (moduleCount + quietModules * 2) * cellSize;
+      qrOutputCanvas.width = actualSize;
+      qrOutputCanvas.height = actualSize;
+      var context = qrOutputCanvas.getContext('2d');
+      context.fillStyle = '#FFFFFF';
+      context.fillRect(0, 0, actualSize, actualSize);
+      context.fillStyle = '#000000';
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var column = 0; column < moduleCount; column += 1) {
+          if (qr.isDark(row, column)) {
+            context.fillRect((column + quietModules) * cellSize, (row + quietModules) * cellSize, cellSize, cellSize);
+          }
+        }
+      }
+      qrOutputCanvas.parentElement.classList.add('has-qr');
+      document.getElementById('qr-download').disabled = false;
+      setStatus(qrGenerateStatus, '二维码生成成功，实际尺寸 ' + actualSize + ' × ' + actualSize + '。', 'success');
+    } catch (error) {
+      setStatus(qrGenerateStatus, '生成失败：内容可能过长，请缩短文字或降低容错级别。', 'error');
+    }
+  }
+
+  var qrTemplates = {
+    url: {
+      value: 'https://www.pangxuejun.cn/',
+      help: '网址使用 https:// 开头，扫码后可在浏览器中打开。'
+    },
+    phone: {
+      value: 'tel:13800138000',
+      help: '将示例号码替换为真实号码，扫码后手机会提示拨打电话。'
+    },
+    sms: {
+      value: 'SMSTO:13800138000:这里填写短信内容',
+      help: '格式：SMSTO:手机号码:短信内容，扫码后进入短信编辑页。'
+    },
+    email: {
+      value: 'mailto:name@example.com?subject=邮件主题&body=邮件正文',
+      help: '可修改收件人、subject 邮件主题和 body 邮件正文。'
+    },
+    wifi: {
+      value: 'WIFI:T:WPA;S:WiFi名称;P:WiFi密码;H:false;;',
+      help: '修改 Wi-Fi 名称和密码；T 可使用 WPA、WEP 或 nopass。请谨慎分享包含密码的二维码。'
+    },
+    geo: {
+      value: 'geo:31.2304,121.4737',
+      help: '格式：geo:纬度,经度，扫码后可由支持的地图应用打开。'
+    },
+    contact: {
+      value: 'BEGIN:VCARD\nVERSION:3.0\nN:张三\nFN:张三\nTEL:13800138000\nEMAIL:name@example.com\nEND:VCARD',
+      help: 'vCard 联系人模板，可修改姓名、电话和邮箱后保存到通讯录。'
+    }
+  };
+
+  function applyQrTemplate(templateName) {
+    var template = qrTemplates[templateName];
+    if (!template) return;
+    qrTextInput.value = template.value;
+    document.getElementById('qr-text-count').textContent = Array.from(template.value).length + ' 字符';
+    document.getElementById('qr-template-help').textContent = template.help;
+    qrTextInput.focus();
+    qrTextInput.select();
+    setStatus(qrGenerateStatus, '模板已填入，请修改示例内容后生成。', 'success');
+  }
+
+  function downloadQrCode() {
+    qrOutputCanvas.toBlob(function(blob) {
+      if (!blob) {
+        setStatus(qrGenerateStatus, '二维码图片生成失败。', 'error');
+        return;
+      }
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'qrcode-' + new Date().toISOString().replace(/[:.]/g, '-') + '.png';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+      setStatus(qrGenerateStatus, '二维码 PNG 已下载。', 'success');
+    }, 'image/png');
+  }
+
+  function drawQrLocation(context, location, scale) {
+    if (!location) return;
+    context.save();
+    context.strokeStyle = '#0ea5e9';
+    context.lineWidth = Math.max(3, 4 * scale);
+    context.beginPath();
+    context.moveTo(location.topLeftCorner.x, location.topLeftCorner.y);
+    context.lineTo(location.topRightCorner.x, location.topRightCorner.y);
+    context.lineTo(location.bottomRightCorner.x, location.bottomRightCorner.y);
+    context.lineTo(location.bottomLeftCorner.x, location.bottomLeftCorner.y);
+    context.closePath();
+    context.stroke();
+    context.restore();
+  }
+
+  function loadImageFile(file) {
+    return new Promise(function(resolve, reject) {
+      var image = new Image();
+      var url = URL.createObjectURL(file);
+      image.onload = function() {
+        URL.revokeObjectURL(url);
+        resolve(image);
+      };
+      image.onerror = function() {
+        URL.revokeObjectURL(url);
+        reject(new Error('浏览器无法读取这张图片，请尝试 PNG、JPG 或 WebP 格式。'));
+      };
+      image.src = url;
+    });
+  }
+
+  async function scanQrImage(file) {
+    if (!file) return;
+    if (file.type && file.type.indexOf('image/') !== 0) {
+      setStatus(qrScanStatus, '请选择有效的图片文件。', 'error');
+      return;
+    }
+    if (file.type === 'image/svg+xml') {
+      setStatus(qrScanStatus, '为安全起见不读取 SVG，请使用 PNG、JPG 或 WebP 图片。', 'error');
+      return;
+    }
+    if (file.size > 25 * 1024 * 1024) {
+      setStatus(qrScanStatus, '图片不能超过 25 MB。', 'error');
+      return;
+    }
+    if (typeof window.jsQR !== 'function') {
+      setStatus(qrScanStatus, '二维码识别组件加载失败，请刷新页面重试。', 'error');
+      return;
+    }
+    setStatus(qrScanStatus, '正在本地识别图片…', '');
+    qrResult.value = '';
+    try {
+      var image = await loadImageFile(file);
+      var maxSide = 2400;
+      var scale = Math.min(1, maxSide / Math.max(image.naturalWidth, image.naturalHeight));
+      var width = Math.max(1, Math.round(image.naturalWidth * scale));
+      var height = Math.max(1, Math.round(image.naturalHeight * scale));
+      qrScanCanvas.width = width;
+      qrScanCanvas.height = height;
+      var context = qrScanCanvas.getContext('2d', {willReadFrequently: true});
+      context.drawImage(image, 0, 0, width, height);
+      var imageData = context.getImageData(0, 0, width, height);
+      var result = window.jsQR(imageData.data, width, height, {inversionAttempts: 'attemptBoth'});
+      document.getElementById('qr-scan-preview').hidden = false;
+      if (!result) {
+        setStatus(qrScanStatus, '未识别到二维码。请尝试更清晰、完整、正对镜头的图片。', 'error');
+        return;
+      }
+      qrResult.value = result.data;
+      drawQrLocation(context, result.location, scale);
+      setStatus(qrScanStatus, '二维码识别成功，共 ' + Array.from(result.data).length + ' 个字符。', 'success');
+    } catch (error) {
+      document.getElementById('qr-scan-preview').hidden = true;
+      setStatus(qrScanStatus, error.message || '图片读取失败，请更换图片重试。', 'error');
+    }
+  }
+
   document.getElementById('format-data').addEventListener('click', function() { renderData(false); });
   document.getElementById('compact-data').addEventListener('click', function() { renderData(true); });
   document.getElementById('json-to-python').addEventListener('click', convertJsonToPython);
@@ -1075,6 +1263,77 @@
     rsaPrivateKey.value = '';
     rsaPassword.value = '';
     setStatus(rsaStatus, '', '');
+  });
+
+  qrTextInput.addEventListener('input', function() {
+    document.getElementById('qr-text-count').textContent = Array.from(qrTextInput.value).length + ' 字符';
+  });
+  document.querySelector('.qr-template-list').addEventListener('click', function(event) {
+    var button = event.target.closest('[data-qr-template]');
+    if (!button) return;
+    applyQrTemplate(button.getAttribute('data-qr-template'));
+  });
+  document.getElementById('qr-generate').addEventListener('click', generateQrCode);
+  document.getElementById('qr-download').addEventListener('click', downloadQrCode);
+  document.getElementById('qr-generate-clear').addEventListener('click', function() {
+    qrTextInput.value = '';
+    document.getElementById('qr-text-count').textContent = '0 字符';
+    qrOutputCanvas.parentElement.classList.remove('has-qr');
+    document.getElementById('qr-download').disabled = true;
+    setStatus(qrGenerateStatus, '', '');
+    qrTextInput.focus();
+  });
+  [qrImageInput, qrCameraInput].forEach(function(input) {
+    input.addEventListener('change', function() {
+      scanQrImage(input.files && input.files[0]);
+      input.value = '';
+    });
+  });
+  qrDropZone.addEventListener('click', function(event) {
+    if (event.target.closest('label')) return;
+    qrImageInput.click();
+  });
+  qrDropZone.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      qrImageInput.click();
+    }
+  });
+  ['dragenter', 'dragover'].forEach(function(type) {
+    qrDropZone.addEventListener(type, function(event) {
+      event.preventDefault();
+      qrDropZone.classList.add('is-dragging');
+    });
+  });
+  ['dragleave', 'drop'].forEach(function(type) {
+    qrDropZone.addEventListener(type, function(event) {
+      event.preventDefault();
+      qrDropZone.classList.remove('is-dragging');
+    });
+  });
+  qrDropZone.addEventListener('drop', function(event) {
+    scanQrImage(event.dataTransfer && event.dataTransfer.files[0]);
+  });
+  document.addEventListener('paste', function(event) {
+    if (document.getElementById('qr-code-tool').hidden) return;
+    var items = event.clipboardData && event.clipboardData.items;
+    if (!items) return;
+    for (var index = 0; index < items.length; index += 1) {
+      if (items[index].type.indexOf('image/') === 0) {
+        scanQrImage(items[index].getAsFile());
+        break;
+      }
+    }
+  });
+  document.getElementById('qr-copy-result').addEventListener('click', function() {
+    copyText(qrResult.value, qrScanStatus, '已复制二维码文字。');
+  });
+  document.getElementById('qr-scan-clear').addEventListener('click', function() {
+    qrResult.value = '';
+    document.getElementById('qr-scan-preview').hidden = true;
+    qrScanCanvas.width = 1;
+    qrScanCanvas.height = 1;
+    setStatus(qrScanStatus, '', '');
   });
 
   renderTime(Date.now());

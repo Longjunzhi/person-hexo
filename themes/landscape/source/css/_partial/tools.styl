@@ -519,6 +519,216 @@
     color: #334155
     font: 12px font-mono
 
+.visually-hidden
+  position: absolute !important
+  width: 1px !important
+  height: 1px !important
+  overflow: hidden !important
+  padding: 0 !important
+  border: 0 !important
+  clip: rect(0 0 0 0) !important
+  white-space: nowrap !important
+
+.qr-tool-grid
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  align-items: start
+  gap: 18px
+
+.qr-card
+  min-width: 0
+  padding: 18px
+  border: 1px solid #e2e8f0
+  border-radius: 12px
+  background: #fbfdff
+
+.qr-card-heading
+  display: flex
+  align-items: flex-start
+  justify-content: space-between
+  gap: 12px
+  margin-bottom: 15px
+
+  span:first-child
+    color: #0284c7
+    font-size: 11px
+    font-weight: 700
+
+  h3
+    margin: 3px 0 0
+    color: #0f172a
+    font-size: 17px
+
+  .qr-step
+    color: #cbd5e1
+    font: 700 22px font-mono
+
+.tool-field .qr-text-input
+  min-height: 118px
+  max-height: 220px
+
+.qr-template-picker
+  margin-top: 12px
+
+  > span
+    display: block
+    margin-bottom: 7px
+    color: #334155
+    font-size: 12px
+    font-weight: 700
+
+  small
+    display: block
+    margin-top: 7px
+    color: #94a3b8
+    font-size: 11px
+    line-height: 1.5
+
+.qr-template-list
+  display: flex
+  flex-wrap: wrap
+  gap: 7px
+
+  button
+    padding: 6px 9px
+    border: 1px solid #dbe3ed
+    border-radius: 999px
+    background: #fff
+    color: #475569
+    font-size: 11px
+    cursor: pointer
+    transition: border-color .18s ease, color .18s ease, background .18s ease
+
+    &:hover,
+    &:focus-visible
+      border-color: #38bdf8
+      outline: 0
+      background: #f0f9ff
+      color: #0369a1
+
+.qr-options
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: 12px
+  margin-top: 12px
+
+.qr-preview
+  display: grid
+  overflow: hidden
+  place-items: center
+  border: 1px solid #dbe3ed
+  border-radius: 10px
+  background-color: #fff
+  background-image: linear-gradient(45deg, #f8fafc 25%, transparent 25%), linear-gradient(-45deg, #f8fafc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f8fafc 75%), linear-gradient(-45deg, transparent 75%, #f8fafc 75%)
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0
+  background-size: 16px 16px
+
+.qr-generated-preview
+  position: relative
+  min-height: 300px
+  margin-top: 14px
+
+  canvas
+    display: none
+    width: 100%
+    max-width: 300px
+    height: auto
+    image-rendering: pixelated
+
+  &.has-qr canvas
+    display: block
+
+  &.has-qr .qr-placeholder
+    display: none
+
+.qr-placeholder
+  display: grid
+  place-items: center
+  gap: 7px
+  color: #94a3b8
+  text-align: center
+
+  strong
+    display: grid
+    width: 58px
+    height: 58px
+    place-items: center
+    border: 2px dashed #cbd5e1
+    border-radius: 12px
+    font: 700 20px font-mono
+
+  span
+    font-size: 12px
+
+.qr-drop-zone
+  display: flex
+  min-height: 174px
+  box-sizing: border-box
+  padding: 20px
+  border: 2px dashed #bae6fd
+  border-radius: 10px
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  gap: 7px
+  background: #f0f9ff
+  color: #475569
+  text-align: center
+  cursor: pointer
+  transition: border-color .18s ease, background .18s ease
+
+  &:hover,
+  &:focus,
+  &.is-dragging
+    border-color: #0284c7
+    outline: 0
+    background: #e0f2fe
+
+  > span:not(.qr-upload-icon)
+    color: #94a3b8
+    font-size: 11px
+
+.qr-upload-icon
+  color: #0284c7
+  font-size: 28px
+
+.qr-upload-actions
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  gap: 8px
+  margin-top: 8px
+
+  .tool-button
+    display: inline-flex
+    min-height: 36px
+    box-sizing: border-box
+    align-items: center
+
+.qr-scan-preview
+  max-height: 330px
+  margin-top: 14px
+  padding: 8px
+
+  canvas
+    display: block
+    max-width: 100%
+    max-height: 310px
+    width: auto
+    height: auto
+
+.qr-result-field
+  margin-top: 14px
+
+  textarea
+    min-height: 112px
+    max-height: 220px
+
+.tool-button:disabled
+  opacity: .5
+  cursor: not-allowed
+  transform: none
+
 .color-picker-shell
   display: grid
   grid-template-columns: 46px 1fr
@@ -634,6 +844,9 @@
   .rsa-password-field
     grid-column: 1 / -1
 
+  .qr-tool-grid
+    grid-template-columns: 1fr
+
   .color-swatch
     min-height: 82px
 
@@ -706,6 +919,15 @@
   .rsa-options,
   .utf8-toolbar
     grid-template-columns: 1fr
+
+  .qr-card
+    padding: 14px
+
+  .qr-options
+    grid-template-columns: 1fr
+
+  .qr-generated-preview
+    min-height: 250px
 
   .rsa-password-field
     grid-column: auto

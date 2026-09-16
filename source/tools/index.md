@@ -42,6 +42,10 @@ hide_author: true
         <span class="tools-nav-icon" aria-hidden="true">RSA</span>
         <span><strong>RSA 公私钥生成</strong><small>PKCS#8 / PKCS#1</small></span>
       </button>
+      <button id="tool-tab-qr" class="tools-nav-item" type="button" role="tab" data-tool-target="qr-code-tool" aria-controls="qr-code-tool" aria-selected="false">
+        <span class="tools-nav-icon" aria-hidden="true">QR</span>
+        <span><strong>二维码工具</strong><small>生成 / 图片识别</small></span>
+      </button>
     </div>
     <div class="tools-nav-note">所有数据仅在本机浏览器处理，不会上传服务器。</div>
   </aside>
@@ -288,6 +292,80 @@ hide_author: true
       <div class="tool-help rsa-security-note"><strong>安全提示：</strong>密钥仅在当前浏览器生成，不会上传服务器。2048 bit 是通用默认值；512/1024 bit 已不安全，仅用于旧系统兼容测试。请妥善保管私钥，不要在公共设备生成生产密钥。</div>
       <div class="tool-help">PKCS#8 常用于 Java、PHP 等程序；PKCS#1 是较早的 RSA 专用格式。密码保护使用 PBES2、PBKDF2-SHA256 与 AES-256-CBC，输出 <code>ENCRYPTED PRIVATE KEY</code>。</div>
       <div id="rsa-status" class="tool-status" role="status" aria-live="polite"></div>
+    </section>
+    <section id="qr-code-tool" class="tool-panel tool-panel-compact tool-panel-qr" role="tabpanel" data-tool-panel aria-labelledby="tool-tab-qr" hidden>
+      <header class="tool-panel-header">
+        <div><span class="tool-eyebrow">QR CODE TOOL</span><h2>二维码生成与识别</h2><p>将文字、网址生成二维码，或从手机照片和本地图片中识别二维码内容。</p></div>
+        <span class="tool-local-badge">图片不上传</span>
+      </header>
+      <div class="qr-tool-grid">
+        <section class="qr-card" aria-labelledby="qr-generate-title">
+          <div class="qr-card-heading"><div><span>文字转二维码</span><h3 id="qr-generate-title">生成二维码</h3></div><span class="qr-step">01</span></div>
+          <div class="tool-field">
+            <div class="tool-field-heading"><label for="qr-text-input">文字或网址</label><span id="qr-text-count">0 字符</span></div>
+            <textarea id="qr-text-input" class="qr-text-input" maxlength="2000" spellcheck="false" placeholder="输入文字或网址，例如：https://www.pangxuejun.cn/"></textarea>
+          </div>
+          <div class="qr-template-picker" aria-label="常用二维码内容模板">
+            <span>常用模板</span>
+            <div class="qr-template-list">
+              <button type="button" data-qr-template="url">网址</button>
+              <button type="button" data-qr-template="phone">拨打电话</button>
+              <button type="button" data-qr-template="sms">发送短信</button>
+              <button type="button" data-qr-template="email">发送邮件</button>
+              <button type="button" data-qr-template="wifi">连接 Wi-Fi</button>
+              <button type="button" data-qr-template="geo">地理位置</button>
+              <button type="button" data-qr-template="contact">联系人</button>
+            </div>
+            <small id="qr-template-help">选择模板后修改示例内容，再生成二维码。</small>
+          </div>
+          <div class="qr-options">
+            <div class="tool-field">
+              <div class="tool-field-heading"><label for="qr-size">图片尺寸</label></div>
+              <select id="qr-size"><option value="320">320 × 320</option><option value="512" selected>512 × 512</option><option value="800">800 × 800</option></select>
+            </div>
+            <div class="tool-field">
+              <div class="tool-field-heading"><label for="qr-level">容错级别</label></div>
+              <select id="qr-level"><option value="L">L · 约 7%</option><option value="M" selected>M · 约 15%</option><option value="Q">Q · 约 25%</option><option value="H">H · 约 30%</option></select>
+            </div>
+          </div>
+          <div class="qr-preview qr-generated-preview">
+            <canvas id="qr-output-canvas" width="512" height="512" aria-label="生成的二维码"></canvas>
+            <div id="qr-output-placeholder" class="qr-placeholder"><strong>QR</strong><span>二维码会显示在这里</span></div>
+          </div>
+          <div class="tool-actions">
+            <button id="qr-generate" class="tool-button primary" type="button">生成二维码</button>
+            <button id="qr-download" class="tool-button" type="button" disabled>下载 PNG</button>
+            <button id="qr-generate-clear" class="tool-button subtle" type="button">清空</button>
+          </div>
+          <div id="qr-generate-status" class="tool-status" role="status" aria-live="polite"></div>
+        </section>
+        <section class="qr-card" aria-labelledby="qr-scan-title">
+          <div class="qr-card-heading"><div><span>二维码转文字</span><h3 id="qr-scan-title">识别二维码图片</h3></div><span class="qr-step">02</span></div>
+          <input id="qr-image-input" class="visually-hidden" type="file" accept="image/*">
+          <input id="qr-camera-input" class="visually-hidden" type="file" accept="image/*" capture="environment">
+          <div id="qr-drop-zone" class="qr-drop-zone" tabindex="0" role="button" aria-controls="qr-image-input">
+            <span class="qr-upload-icon" aria-hidden="true">▣</span>
+            <strong>选择或拖入二维码图片</strong>
+            <span>支持 PNG、JPG、WebP 等浏览器可读取格式</span>
+            <div class="qr-upload-actions">
+              <label for="qr-image-input" class="tool-button primary">选择图片</label>
+              <label for="qr-camera-input" class="tool-button">手机拍照</label>
+            </div>
+          </div>
+          <div id="qr-scan-preview" class="qr-preview qr-scan-preview" hidden>
+            <canvas id="qr-scan-canvas" aria-label="待识别二维码图片"></canvas>
+          </div>
+          <div class="tool-field qr-result-field">
+            <div class="tool-field-heading"><label for="qr-result">识别文字</label><button id="qr-copy-result" class="tool-text-button" type="button">复制结果</button></div>
+            <textarea id="qr-result" readonly spellcheck="false" placeholder="识别出的文字会显示在这里"></textarea>
+          </div>
+          <div class="tool-actions">
+            <button id="qr-scan-clear" class="tool-button subtle" type="button">清空图片</button>
+          </div>
+          <div id="qr-scan-status" class="tool-status" role="status" aria-live="polite"></div>
+        </section>
+      </div>
+      <div class="tool-help rsa-security-note"><strong>隐私提示：</strong>文字和图片仅在当前浏览器中处理，不会上传服务器。手机拍摄时请让二维码保持完整、清晰，并尽量避免反光和过度倾斜。电话、短信、邮件、Wi-Fi 和位置二维码只提供标准内容，扫码后的具体操作由手机系统或扫码应用确认。</div>
     </section>
   </main>
 </div>
