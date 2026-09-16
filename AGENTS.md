@@ -179,7 +179,12 @@ The document root is not a Git worktree. Deploy generated files from the local
 1. Confirm the SSH identity and hostname.
 2. Re-read the active vhost and confirm its `root` is still the path above.
 3. Check free disk space and create a timestamped compressed backup under
-   `/www/backup/codex/person-hexo/`.
+   `/www/backup/codex/person-hexo/`. After the new backup is confirmed non-empty
+   and its archive can be listed successfully, prune this directory by server-local
+   modification date: retain only the newest backup from each of the three most
+   recent calendar dates. Keep at most one backup per date and delete older same-day
+   backups. Resolve and review the exact keep/delete list before deleting; never use
+   a broad wildcard or remove anything outside this dedicated backup directory.
 4. Preserve server-managed files that are not produced by Hexo, currently including
    `.user.ini`, `ba0015b642d4bd3c078a6079b9354bf7.txt`, and `新建文本`.
 5. Synchronize `public/` to the document root with deletion enabled so unpublished
